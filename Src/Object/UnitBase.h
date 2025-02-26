@@ -62,6 +62,9 @@ protected:
 	//半径
 	float radius_;
 
+	//速度
+	float speed_;
+
 	//アニメーション
 	ANIM anim_;								//アニメステート
 	std::unordered_map<ANIM, int> animNum_;	//アニメーションナンバー格納配列。

@@ -8,6 +8,9 @@ UnitBase::UnitBase()
 	trans_.scl = { 0.0f,0.0f,0.0f };
 	trans_.rot = { 0.0f,0.0f,0.0f };
 
+	radius_ = 0.0f;
+	speed_ = 0.0f;
+
 	anim_ = ANIM::NONE;
 	atcAnim_ = -1;
 	animTotalTime_ = -1;
@@ -21,7 +24,25 @@ UnitBase::~UnitBase()
 
 void UnitBase::ResetAnim(const ANIM _anim, const float _speed)
 {
-	
+	if (anim_ == _anim)return;
+
+	//アニメーションスピードの変更
+	speedAnim_ = _speed;
+
+	//デタッチ
+	//実質atcAnimの初期化
+	MV1DetachAnim(trans_.modelId, atcAnim_);
+
+	anim_ = _anim;
+	//アタッチ
+	//実質atcAnimの代入
+	atcAnim_ = MV1AttachAnim(trans_.modelId, animNum_[anim_]);
+
+	animTotalTime_ = MV1GetAttachAnimTotalTime(trans_.modelId, atcAnim_);
+	stepAnim_ = 0.0f;
+
+	// 再生するアニメーション時間の設定
+	MV1SetAttachAnimTime(trans_.modelId, atcAnim_, stepAnim_);
 }
 
 void UnitBase::Anim(void)
