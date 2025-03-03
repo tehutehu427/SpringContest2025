@@ -135,12 +135,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <ClCompile Include="Src\Object\Item.cpp" />
-=======
     <ClCompile Include="Src\Object\Enemy.cpp" />
     <ClCompile Include="Src\Object\Player.cpp" />
->>>>>>> main
     <ClCompile Include="Src\Application.cpp" />
     <ClCompile Include="Src\Common\Fader.cpp" />
     <ClCompile Include="Src\Common\ImageFader.cpp" />
@@ -169,12 +166,9 @@
     <ClCompile Include="Src\Object\Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <ClInclude Include="Src\Object\Item.h" />
-=======
     <ClInclude Include="Src\Object\Enemy.h" />
     <ClInclude Include="Src\Object\Player.h" />
->>>>>>> main
     <ClInclude Include="Src\Application.h" />
     <ClInclude Include="Src\Common\Fader.h" />
     <ClInclude Include="Src\Common\ImageFader.h" />
