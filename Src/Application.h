@@ -26,10 +26,6 @@ public:
 	//FPS
 	static constexpr int DEFAULT_FPS = 60;
 	static constexpr float FRAME_RATE = 1000 / 60;
-	static constexpr float FPS_USE_SUBWINDOW = 1000000 / 60;
-
-	//ウィンドウ
-	static constexpr int SUBWINDOW_NUM = 3;
 
 	// データパス関連
 	//-------------------------------------------
