@@ -19,13 +19,13 @@ public:
 	/// デルタタイムでカウントアップ
 	/// </summary>
 	/// <param name="_value">アップさせる値</param>
-	void CntUp(float _value)const;
+	void CntUp(float& _value)const;
 	
 	/// <summary>
 	/// デルタタイムでカウントダウン
 	/// </summary>
 	/// <param name="_value">アップさせる値</param>
-	void CntDown(float _value)const;
+	void CntDown(float& _value)const;
 
 private:
 
