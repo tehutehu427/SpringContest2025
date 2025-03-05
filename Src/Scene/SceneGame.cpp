@@ -3,6 +3,8 @@
 #include"../Manager/Generic/SceneManager.h"
 #include"../Manager/Generic/InputManager.h"
 #include"../Manager/System/Timer.h"
+#include "../Object/ItemManager.h"
+#include "../Object/Item.h"
 #include "../Object/Stage.h"
 #include "SceneGame.h"
 
@@ -15,6 +17,10 @@ void SceneGame::Init(void)
 	//ステージの初期化
 	stage_ = std::make_unique<Stage>();
 	stage_->Init();
+
+	//アイテムの初期化
+	itemMng_ = std::make_unique<ItemManager>();
+	itemMng_->Init();
 }
 
 void SceneGame::Update(void)
@@ -25,6 +31,9 @@ void SceneGame::Update(void)
 
 	//ステージの更新
 	stage_->Update();
+
+	//アイテムの更新
+	itemMng_->Update();
 }
 
 void SceneGame::Draw(void)
@@ -38,10 +47,15 @@ void SceneGame::Draw(void)
 
 	//ステージの描画
 	stage_->Draw();
+
+	//アイテムの描画
+	itemMng_->Draw();
 }
 
 void SceneGame::Release(void)
 {
+	//アイテムの解放
+	itemMng_->Release();
 }
 
 void SceneGame::DrawDebug(void)
