@@ -12,7 +12,7 @@ public:
 	//***********************************************
 
 	//”¼Œa
-	static constexpr float RADIUS = 10.0f;
+	static constexpr float RADIUS = 50.0f;
 
 	//***********************************************
 	//ƒƒ“ƒoŠÖ”

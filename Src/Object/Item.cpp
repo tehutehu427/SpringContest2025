@@ -46,7 +46,7 @@ void Item::Draw(void)
 void Item::DrawDebug(void)
 {
 	//デバッグ
-	DrawSphere3D(trans_.pos, radius_, 10.0f, 0xffff00, 0xffff00, true);
+	DrawSphere3D(trans_.pos, radius_, 100.0f, 0xffff00, 0xffff00, true);
 	DrawFormatString(0, 16, 0xffffff, "item(%.2f,%.2f,%.2f)", trans_.pos.x, trans_.pos.y, trans_.pos.z);
 }
 

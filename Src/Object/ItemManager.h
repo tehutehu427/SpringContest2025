@@ -13,15 +13,14 @@ public:
 	//íËêî
 	//***********************************************
 
-	static constexpr VECTOR SPAWN_POS_1 = { 100.0f,0.0f,100.0f };
-	static constexpr VECTOR SPAWN_POS_2 = { 0.0f,0.0f,100.0f };
-	static constexpr VECTOR SPAWN_POS_3 = { -100.0f,0.0f,100.0f };
-	static constexpr VECTOR SPAWN_POS_4 = { 100.0f,0.0f,0.0f };
-	static constexpr VECTOR SPAWN_POS_5 = { 0.0f,0.0f,0.0f };
-	static constexpr VECTOR SPAWN_POS_6 = { -100.0f,0.0f,0.0f };
-	static constexpr VECTOR SPAWN_POS_7 = { 100.0f,0.0f,-100.0f };
-	static constexpr VECTOR SPAWN_POS_8 = { 0.0f,0.0f,-100.0f };
-	static constexpr VECTOR SPAWN_POS_9 = { -10.0f,0.0f,-100.0f };
+	static constexpr VECTOR SPAWN_POS_1 = { -600.0f,100.0f,1500.0f };
+	static constexpr VECTOR SPAWN_POS_2 = { 110.0f,100.0f,1500.0f };
+	static constexpr VECTOR SPAWN_POS_3 = { 800.0f,100.0f,1500.0f };
+	static constexpr VECTOR SPAWN_POS_4 = { -600.0f,100.0f,800.0f };
+	static constexpr VECTOR SPAWN_POS_5 = { 800.0f,100.0f,800.0f };
+	static constexpr VECTOR SPAWN_POS_6 = {	-600.0f,100.0f,200.0f };
+	static constexpr VECTOR SPAWN_POS_7 = { 110.0f,100.0f,200.0f };
+	static constexpr VECTOR SPAWN_POS_8 = { 800.0f,100.0f,200.0f };
 
 	//***********************************************
 	//ÉÅÉìÉoä÷êî

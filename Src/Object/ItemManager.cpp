@@ -17,7 +17,6 @@ void ItemManager::Init(void)
 	spawnPos_.emplace_back(SPAWN_POS_6);
 	spawnPos_.emplace_back(SPAWN_POS_7);
 	spawnPos_.emplace_back(SPAWN_POS_8);
-	spawnPos_.emplace_back(SPAWN_POS_9);
 
 	cnt_ = 0.0f;
 
