@@ -18,8 +18,6 @@ void SceneGame::Update(void)
 	//シーン遷移(デバッグ)
 	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_SPACE))
 		SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::GAMEOVER);
-
-	float i = 0;
 }
 
 void SceneGame::Draw(void)
