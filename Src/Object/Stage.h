@@ -1,33 +1,18 @@
 #pragma once
 
-#include"Common/Transform.h"
+#include <DxLib.h>
+#include "StageModelLoader.h"
 
-class Stage
-{
-public:
-	//***********************************************
-	//メンバ関数
-	//***********************************************
-
-	//コンストラクタ
-	Stage();
-	//デストラクタ
-	~Stage();
-
-	//初期化
-	void Init(void);
-	//更新
-	void Update(void);
-	//描画
-	void Draw(void);
-	//解放
-	void Release(void);
-
+class Stage {
 private:
-	//***********************************************
-	//メンバ変数
-	//***********************************************
+    StageModelLoader model_;
 
-	//モデルの情報
-	Transform trans_;
+public:
+    Stage();  // コンストラクタ
+    ~Stage(); // デストラクタ
+
+    bool Init();    // 初期化処理
+    void Update();  // 更新処理
+    void Draw();    // 描画処理
 };
+

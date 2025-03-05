@@ -1,39 +1,45 @@
-#include<DxLib.h>
-#include"../Utility/AsoUtility.h"
+#include "../Manager/Generic/Resource.h"
+#include "../Manager/Generic/ResourceManager.h"
 #include "Stage.h"
 
+//コンストラクト
 Stage::Stage()
 {
+
 }
 
+//デストラクタ
 Stage::~Stage()
 {
+
 }
 
-void Stage::Init(void)
+//初期化処理
+bool Stage::Init()
 {
-	//変数の初期化
-	trans_ = Transform();
-	//trans_.modelId = 
-	trans_.quaRot = Quaternion();
-	trans_.quaRotLocal = Quaternion::AngleAxis(AsoUtility::Deg2RadF(180.0f), AsoUtility::AXIS_Y);
+	//モデルの読み込み
+	if (!model_.Load("Data/Model/Stage.mv1"))
+	{
+		MessageBox(NULL, "モデルの読み込み失敗しました", "エラー", MB_OK);
+		return false;
+	}
 
-	//モデル制御
-	trans_.Update();
+	// モデルの位置・スケールを設定
+	model_.SetPosition(0.0f, -100.0f, 1000.0f);
+	model_.SetScale(0.3f, 0.3f, 0.3f);
+
+	return true;
 }
 
-void Stage::Update(void)
+// 更新処理
+void Stage::Update() 
 {
-	//モデル制御
-	trans_.Update();
+
 }
 
-void Stage::Draw(void)
+// 描画処理
+void Stage::Draw() 
 {
-	//モデル描画
-	MV1DrawModel(trans_.modelId);
-}
-
-void Stage::Release(void)
-{
+	// モデルを描画
+	model_.Draw();
 }
