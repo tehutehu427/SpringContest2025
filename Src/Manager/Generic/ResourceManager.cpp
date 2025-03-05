@@ -46,11 +46,14 @@ void ResourceManager::InitGame(void)
 	// ゲームシーンで使うリソース
 	//*********************************************
 
+	Resource res;
+
+	//ステージ
+	res = Resource(Resource::TYPE::MODEL, Application::PATH_MODEL + "TitleLogo.png");
+	resourcesMap_.emplace(SRC::STAGE, res);
 
 	ResourcePlayer();
 	ResourceEnemy();
-
-	Resource res;
 }
 
 void ResourceManager::InitGameOver(void)

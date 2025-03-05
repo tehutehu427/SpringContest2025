@@ -1,5 +1,9 @@
 #pragma once
+
+#include<memory>
 #include "SceneBase.h"
+
+class Stage;
 
 class SceneGame : public SceneBase
 {
@@ -21,6 +25,9 @@ public:
     void Release(void)override;
 
 private:
+
+    //ステージ
+    std::unique_ptr<Stage> stage_;
 
     //描画(デバッグ)
     void DrawDebug(void);

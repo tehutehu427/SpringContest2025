@@ -3,6 +3,7 @@
 #include"../Manager/Generic/SceneManager.h"
 #include"../Manager/Generic/InputManager.h"
 #include"../Manager/System/Timer.h"
+#include "../Object/Stage.h"
 #include "SceneGame.h"
 
 SceneGame::SceneGame()
@@ -11,6 +12,9 @@ SceneGame::SceneGame()
 
 void SceneGame::Init(void)
 {
+	//ステージの初期化
+	stage_ = std::make_unique<Stage>();
+	stage_->Init();
 }
 
 void SceneGame::Update(void)
@@ -18,6 +22,9 @@ void SceneGame::Update(void)
 	//シーン遷移(デバッグ)
 	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_SPACE))
 		SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::GAMEOVER);
+
+	//ステージの更新
+	stage_->Update();
 }
 
 void SceneGame::Draw(void)
@@ -28,6 +35,9 @@ void SceneGame::Draw(void)
 	DrawDebug();
 
 #endif // SCENE_DEBUG
+
+	//ステージの描画
+	stage_->Draw();
 }
 
 void SceneGame::Release(void)
