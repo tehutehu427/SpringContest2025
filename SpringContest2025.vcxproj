@@ -135,6 +135,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Object\ItemManager.cpp" />
+    <ClCompile Include="Src\Object\Item.cpp" />
     <ClCompile Include="Src\Object\Enemy.cpp" />
     <ClCompile Include="Src\Object\Player.cpp" />
     <ClCompile Include="Src\Application.cpp" />
@@ -166,6 +168,8 @@
     <ClCompile Include="Src\Object\Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Object\ItemManager.h" />
+    <ClInclude Include="Src\Object\Item.h" />
     <ClInclude Include="Src\Object\Enemy.h" />
     <ClInclude Include="Src\Object\Player.h" />
     <ClInclude Include="Src\Application.h" />
