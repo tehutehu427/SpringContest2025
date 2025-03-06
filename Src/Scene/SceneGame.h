@@ -4,6 +4,7 @@
 #include "SceneBase.h"
 
 class Stage;
+class EnemyManager;
 class ItemManager;
 
 class SceneGame : public SceneBase
@@ -29,6 +30,9 @@ private:
 
     //ステージ
     std::unique_ptr<Stage> stage_;
+
+    //敵マネージャー
+    std::unique_ptr<EnemyManager> enmMng_;
 
     //アイテムマネージャー
     std::unique_ptr<ItemManager> itemMng_;

@@ -11,7 +11,8 @@ Enemy::~Enemy()
 
 void Enemy::Init(void)
 {
-	trans_.pos = { -STAGE_SIZE/2,ENEMY_SIZE,STAGE_SIZE / 2 };
+	//trans_.pos = { -STAGE_SIZE/2,ENEMY_SIZE,STAGE_SIZE / 2 };
+	trans_.pos = { -STAGE_SIZE/2,ENEMY_SIZE, -STAGE_SIZE / 2 };
 	trans_.scl = AsoUtility::VECTOR_ONE;
 	trans_.rot = AsoUtility::VECTOR_ZERO;
 	moveDir_ = MOVEDIR::RIGHT;
@@ -66,10 +67,10 @@ void Enemy::Release(void)
 
 
 
-VECTOR Enemy::GetPos(void) const
-{
-	return trans_.pos;
-}
+//VECTOR Enemy::GetPos(void) const
+//{
+//	return trans_.pos;
+//}
 
 void Enemy::SetPos(const VECTOR& pos)
 {

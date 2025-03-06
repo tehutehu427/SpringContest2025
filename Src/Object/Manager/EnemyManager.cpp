@@ -1,22 +1,22 @@
 #include <DxLib.h>
 #include "EnemyManager.h"
-#include"../../Object/Enemy.h"
+#include"../Enemy.h"
 
-EnemyManager* EnemyManager::instance_ = nullptr;
-
-void EnemyManager::CreateInstance(void)
-{
-	if (instance_ == nullptr) {
-		instance_ = new EnemyManager();
-	}
-	instance_->Init();
-
-}
-
-EnemyManager& EnemyManager::GetInstance(void)
-{
-	return *instance_;
-}
+//EnemyManager* EnemyManager::instance_ = nullptr;
+//
+//void EnemyManager::CreateInstance(void)
+//{
+//	if (instance_ == nullptr) {
+//		instance_ = new EnemyManager();
+//	}
+//	instance_->Init();
+//
+//}
+//
+//EnemyManager& EnemyManager::GetInstance(void)
+//{
+//	return *instance_;
+//}
 
 EnemyManager::EnemyManager(void) {
 	enemy_ = nullptr;
@@ -42,5 +42,5 @@ void EnemyManager::Release(void)
 {
 	enemy_->Release();
 
-	delete instance_;
+	//delete instance_;
 }

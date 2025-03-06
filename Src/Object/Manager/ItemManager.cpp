@@ -1,6 +1,6 @@
 #include<DxLib.h>
-#include"../Manager/System/Timer.h"
-#include "Item.h"
+#include"../../Manager/System/Timer.h"
+#include"../Item.h"
 #include "ItemManager.h"
 
 ItemManager::ItemManager()

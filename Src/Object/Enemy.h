@@ -6,11 +6,11 @@
 class Enemy : public UnitBase
 {
 public:
-	static constexpr float ENEMY_SIZE = 10.0f;	//敵の大きさ(半径)
+	static constexpr float ENEMY_SIZE = 50.0f;	//敵の大きさ(半径)
 
-	static constexpr float STAGE_SIZE = 100.0f;	//ステージの大きさ(正方形1辺の長さ)
+	static constexpr float STAGE_SIZE = 1700.0f;	//ステージの大きさ(正方形1辺の長さ)
 
-	static constexpr float MOVE_SPEED = 1.0f;	//移動速度
+	static constexpr float MOVE_SPEED = 10.0f;	//移動速度
 
 	enum class MOVEDIR
 	{
@@ -38,7 +38,7 @@ public:
 	void Release(void)override;
 
 	//座標取得
-	VECTOR GetPos(void) const;
+	//VECTOR GetPos(void) const;
 
 	void SetPos(const VECTOR& pos);
 
