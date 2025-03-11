@@ -37,6 +37,9 @@ public:
 	//‰ğ•ú
 	virtual void Release(void) = 0;
 
+	//ƒ‚ƒfƒ‹î•ñ
+	const Transform& GetTransform(void) { return trans_; }
+
 	//ˆÊ’u
 	const VECTOR GetPos(void)const { return trans_.pos; };
 	//Šp“x
