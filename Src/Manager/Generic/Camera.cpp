@@ -176,8 +176,11 @@ void Camera::SetBeforeDrawFollowPerspective(void)
 	//カメラ位置の更新
 	pos_ = followPos;
 
+	//カメラ位置から注視点までの相対座標
+	VECTOR relativeTPos = followRot.PosAxis(RELATIVE_C2T_POS_FOLLOW_PERSPECTIVE);
+
 	//注視点の更新
-	targetPos_ = pos_;
+	targetPos_ = VAdd(pos_, relativeTPos);
 
 	//カメラの上方向
 	cameraUp_ = followRot.PosAxis(rot_.GetUp());
