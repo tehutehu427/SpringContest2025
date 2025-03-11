@@ -2,6 +2,7 @@
 #include "UnitBase.h"
 class Player : public UnitBase
 {
+public:
 	//コンストラクタ
 	Player();
 	//デストラクタ
