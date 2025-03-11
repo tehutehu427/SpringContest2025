@@ -53,11 +53,12 @@ public:
 	enum class MODE
 	{
 		NONE,
-		FIXED_POINT,	//定点カメラ
-		FREE,			//フリーモード
-		FOLLOW,			//追従モード
-		FOLLOW_SPRING,	//ばね付き追従モード
-		SHAKE			//カメラ揺らし
+		FIXED_POINT,		//定点カメラ
+		FREE,				//フリーモード
+		FOLLOW,				//追従モード
+		FOLLOW_SPRING,		//ばね付き追従モード
+		FOLLOW_PERSPECTIVE,	//追従対象視点モード
+		SHAKE				//カメラ揺らし
 	};
 
 	//コンストラクタ
@@ -136,11 +137,12 @@ private:
 	void SetDefault(void);
 
 	//カメラの描画モード関連------------------
-	void SetBeforeDrawFixedPoint(void);		//定点カメラ
-	void SetBeforeDrawFree(void);			//フリーカメラ
-	void SetBeforeDrawFollow(void);			//追従カメラ
-	void SetBeforeDrawFollowSpring(void);	//ばね追従カメラ
-	void SetBeforeDrawShake(void);			//カメラシェイク
+	void SetBeforeDrawFixedPoint(void);			//定点カメラ
+	void SetBeforeDrawFree(void);				//フリーカメラ
+	void SetBeforeDrawFollow(void);				//追従カメラ
+	void SetBeforeDrawFollowSpring(void);		//ばね追従カメラ
+	void SetBeforeDrawFollowPerspective(void);	//追従対象視点カメラ
+	void SetBeforeDrawShake(void);				//カメラシェイク
 	//----------------------------------------
 
 	//カメラシェイク

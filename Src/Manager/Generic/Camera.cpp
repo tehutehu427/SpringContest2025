@@ -26,6 +26,7 @@ void Camera::Init(void)
 	setBeforeDrawMode_.emplace(MODE::FREE, std::bind(&Camera::SetBeforeDrawFree, this));
 	setBeforeDrawMode_.emplace(MODE::FOLLOW, std::bind(&Camera::SetBeforeDrawFollow, this));
 	setBeforeDrawMode_.emplace(MODE::FOLLOW_SPRING, std::bind(&Camera::SetBeforeDrawFollowSpring, this));
+	setBeforeDrawMode_.emplace(MODE::FOLLOW_PERSPECTIVE, std::bind(&Camera::SetBeforeDrawFollowPerspective, this));
 	setBeforeDrawMode_.emplace(MODE::SHAKE, std::bind(&Camera::SetBeforeDrawShake, this));
 
 	//カメラの初期設定
@@ -162,6 +163,24 @@ void Camera::SetBeforeDrawFollowSpring(void)
 	//カメラの上方向
 	cameraUp_ = forward.PosAxis(rot_.GetUp());
 
+}
+
+void Camera::SetBeforeDrawFollowPerspective(void)
+{
+	//追従対象の位置
+	VECTOR followPos = followTransform_->pos;
+
+	//追従対象の向き
+	Quaternion followRot = followTransform_->quaRot;
+
+	//カメラ位置の更新
+	pos_ = followPos;
+
+	//注視点の更新
+	targetPos_ = pos_;
+
+	//カメラの上方向
+	cameraUp_ = followRot.PosAxis(rot_.GetUp());
 }
 
 void Camera::SetBeforeDrawShake(void)
