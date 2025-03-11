@@ -3,6 +3,7 @@
 #include"../Manager/Generic/SceneManager.h"
 #include"../Manager/Generic/InputManager.h"
 #include"../Manager/System/Timer.h"
+#include"../Manager/Generic/Camera.h"
 #include "../Object/Manager/ItemManager.h"
 #include "../Object/Item.h"
 #include "../Object/Manager/EnemyManager.h"
@@ -17,6 +18,9 @@ SceneGame::SceneGame()
 
 void SceneGame::Init(void)
 {
+	//カメラ
+	auto camera = SceneManager::GetInstance().GetCamera();
+
 	//ステージの初期化
 	stage_ = std::make_unique<Stage>();
 	stage_->Init();
@@ -32,6 +36,8 @@ void SceneGame::Init(void)
 	//アイテムの初期化
 	itemMng_ = std::make_unique<ItemManager>();
 	itemMng_->Init();
+
+	//camera->SetFollow(player_->)
 }
 
 void SceneGame::Update(void)
