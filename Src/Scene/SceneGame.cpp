@@ -21,6 +21,9 @@ void SceneGame::Init(void)
 	//カメラ
 	auto camera = SceneManager::GetInstance().GetCamera();
 
+	//カメラを固定に設定
+	camera->ChangeMode(Camera::MODE::FOLLOW);
+
 	//ステージの初期化
 	stage_ = std::make_unique<Stage>();
 	stage_->Init();
@@ -37,7 +40,8 @@ void SceneGame::Init(void)
 	itemMng_ = std::make_unique<ItemManager>();
 	itemMng_->Init();
 
-	//camera->SetFollow(player_->)
+	//カメラをプレイヤーに追従
+	camera->SetFollow(&player_->GetTransform());
 }
 
 void SceneGame::Update(void)
