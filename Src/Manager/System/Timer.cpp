@@ -26,12 +26,12 @@ Timer& Timer::GetInstance(void)
 	return *instance_;
 }
 
-void Timer::CntUp(float _value) const
+void Timer::CntUp(float& _value) const
 {
 	_value += SceneManager::GetInstance().GetDeltaTime();
 }
 
-void Timer::CntDown(float _value) const
+void Timer::CntDown(float& _value) const
 {
 	_value -= SceneManager::GetInstance().GetDeltaTime();
 }

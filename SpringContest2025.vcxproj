@@ -135,6 +135,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Object\Manager\ItemManager.cpp" />
+    <ClCompile Include="Src\Object\Item.cpp" />
+    <ClCompile Include="Src\Object\Manager\EnemyManager.cpp" />
+    <ClCompile Include="Src\Object\Enemy.cpp" />
+    <ClCompile Include="Src\Object\Player.cpp" />
     <ClCompile Include="Src\Application.cpp" />
     <ClCompile Include="Src\Common\Fader.cpp" />
     <ClCompile Include="Src\Common\ImageFader.cpp" />
@@ -153,14 +158,22 @@
     <ClCompile Include="Src\Manager\System\Timer.cpp" />
     <ClCompile Include="Src\Object\Common\Transform.cpp" />
     <ClCompile Include="Src\Object\Grid.cpp" />
+    <ClCompile Include="Src\Object\StageModelLoader.cpp.cpp" />
+    <ClCompile Include="Src\Object\UnitBase.cpp" />
     <ClCompile Include="Src\Scene\SceneBase.cpp" />
     <ClCompile Include="Src\Scene\SceneGame.cpp" />
     <ClCompile Include="Src\Scene\SceneGameClear.cpp" />
     <ClCompile Include="Src\Scene\SceneGameOver.cpp" />
     <ClCompile Include="Src\Scene\SceneTitle.cpp" />
     <ClCompile Include="Src\Utility\AsoUtility.cpp" />
+    <ClCompile Include="Src\Object\Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Object\Manager\ItemManager.h" />
+    <ClInclude Include="Src\Object\Item.h" />
+    <ClInclude Include="Src\Object\Manager\EnemyManager.h" />
+    <ClInclude Include="Src\Object\Enemy.h" />
+    <ClInclude Include="Src\Object\Player.h" />
     <ClInclude Include="Src\Application.h" />
     <ClInclude Include="Src\Common\Fader.h" />
     <ClInclude Include="Src\Common\ImageFader.h" />
@@ -179,12 +192,15 @@
     <ClInclude Include="Src\Manager\System\Timer.h" />
     <ClInclude Include="Src\Object\Common\Transform.h" />
     <ClInclude Include="Src\Object\Grid.h" />
+    <ClInclude Include="Src\Object\StageModelLoader.h" />
+    <ClInclude Include="Src\Object\UnitBase.h" />
     <ClInclude Include="Src\Scene\SceneBase.h" />
     <ClInclude Include="Src\Scene\SceneGame.h" />
     <ClInclude Include="Src\Scene\SceneGameClear.h" />
     <ClInclude Include="Src\Scene\SceneGameOver.h" />
     <ClInclude Include="Src\Scene\SceneTitle.h" />
     <ClInclude Include="Src\Utility\AsoUtility.h" />
+    <ClInclude Include="Src\Object\Stage.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
