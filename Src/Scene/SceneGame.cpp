@@ -22,7 +22,7 @@ void SceneGame::Init(void)
 	auto camera = SceneManager::GetInstance().GetCamera();
 
 	//カメラを固定に設定
-	camera->ChangeMode(Camera::MODE::FOLLOW);
+	camera->ChangeMode(Camera::MODE::FOLLOW_PERSPECTIVE);
 
 	//ステージの初期化
 	stage_ = std::make_unique<Stage>();
