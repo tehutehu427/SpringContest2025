@@ -1,4 +1,5 @@
 #include"../Application.h"
+#include"../Utility/AsoUtility.h"
 #include "UnitBase.h"
 
 UnitBase::UnitBase()
@@ -43,6 +44,12 @@ void UnitBase::ResetAnim(const ANIM _anim, const float _speed)
 
 	// 再生するアニメーション時間の設定
 	MV1SetAttachAnimTime(trans_.modelId, atcAnim_, stepAnim_);
+}
+
+void UnitBase::Turn(const float _deg, const VECTOR& _axis)
+{
+	trans_.quaRot =
+		trans_.quaRot.AngleAxis(AsoUtility::Deg2RadF(_deg), _axis);
 }
 
 void UnitBase::Anim(void)
