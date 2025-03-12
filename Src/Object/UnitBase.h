@@ -37,6 +37,9 @@ public:
 	//解放
 	virtual void Release(void) = 0;
 
+	//モデル情報
+	const Transform& GetTransform(void) { return trans_; }
+
 	//位置
 	const VECTOR GetPos(void)const { return trans_.pos; };
 	//角度
@@ -49,6 +52,13 @@ public:
 
 	//アニメーションリセット
 	void ResetAnim(const ANIM _anim, const float _speed);
+
+	/// <summary>
+	/// 回転処理
+	/// </summary>
+	/// <param name="_deg">回転する角度(デグリー角)</param>
+	/// <param name="_axis">回転方向</param>
+	void Turn(const float _deg, const VECTOR& _axis);
 
 protected:
 
