@@ -34,6 +34,7 @@ bool Stage::Init()
 // XVˆ—
 void Stage::Update() 
 {
+
 }
 
 // •`‰æˆ—
