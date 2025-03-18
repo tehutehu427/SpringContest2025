@@ -112,6 +112,8 @@ void SceneGame::Collision(void)
 {
 	auto& col = Collision::GetInstance();
 
-	//プレイヤーとステージの当たり判定
-	//if(col.IsHitUnitStageObject(stage_))
+	//プレイヤーと敵の当たり判定
+	//for(auto enm:enmMng_->)
+	
+	//if(col.IsHitUnitStageObject(stage_->GetModelId(),player_->GetPos(),Player::SIZE))
 }
