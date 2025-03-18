@@ -47,4 +47,3 @@ private:
     //“–‚½‚è”»’è
     void Collision(void);
 };
-
