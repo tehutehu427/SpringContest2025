@@ -1,6 +1,7 @@
 #pragma once
 
 #include<memory>
+#include"../Application.h"
 #include"Common/Transform.h"
 
 class Player;
@@ -10,6 +11,12 @@ class ItemManager;
 class MiniMap
 {
 public:
+
+	//ミニマップ
+	static constexpr int MAP_SIZE = 100;										//ミニマップ画像の大きさ
+	static constexpr float MAP_POS_X = Application::SCREEN_SIZE_X - MAP_SIZE;	//ミニマップのX座標
+	static constexpr float MAP_POS_Y = Application::SCREEN_SIZE_Y - MAP_SIZE;	//ミニマップのY座標
+
 	//コンストラクタ
 	MiniMap(Player* _player, EnemyManager* _eneMng, ItemManager* _itemMng);
 	//デストラクタ
@@ -26,8 +33,11 @@ public:
 
 private:
 
-	Player* player_;
-	EnemyManager* eneMng_;
-	ItemManager* itemMng_;
+	Player* player_;		//プレイヤー
+	EnemyManager* eneMng_;	//敵
+	ItemManager* itemMng_;	//アイテム
+
+	int mapFrameImg_;		//枠画像
+	int mapGroundImg_;		//枠内画像
 };
 

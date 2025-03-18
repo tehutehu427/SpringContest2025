@@ -18,6 +18,10 @@ public:
 		/*例*/
 		//TITLE_LOGO,				//タイトルロゴ
 		STAGE,
+
+		//ミニマップ関係
+		MAP_FRAME,
+		MAP_GROUND,
 	};
 
 	// 明示的にインステンスを生成する

@@ -49,8 +49,19 @@ void ResourceManager::InitGame(void)
 	Resource res;
 
 	//ステージ
-	res = Resource(Resource::TYPE::MODEL, Application::PATH_MODEL + "TitleLogo.png");
-	resourcesMap_.emplace(SRC::STAGE, res);
+	//res = Resource(Resource::TYPE::MODEL, Application::PATH_MODEL + "TitleLogo.png");
+	//resourcesMap_.emplace(SRC::STAGE, res);
+
+	//ミニマップ関係
+	//--------------------------------------------
+
+	//枠
+	res = Resource(Resource::TYPE::IMG, Application::PATH_IMAGE + "MiniMap/MapFrame.png");
+	resourcesMap_.emplace(SRC::MAP_FRAME, res);
+
+	//枠内
+	res = Resource(Resource::TYPE::IMG, Application::PATH_IMAGE + "MiniMap/MapGround.png");
+	resourcesMap_.emplace(SRC::MAP_GROUND, res);
 
 	ResourcePlayer();
 	ResourceEnemy();

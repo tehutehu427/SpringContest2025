@@ -23,6 +23,11 @@ void MiniMap::Update(void)
 
 void MiniMap::Draw(void)
 {
+	//˜g“à‚Ì•`‰æ
+	DrawRotaGraph(MAP_POS_X, MAP_POS_Y, 1.0, 0.0, mapGroundImg_,true);
+	
+	//˜g‚Ì•`‰æ
+	DrawRotaGraph(MAP_POS_X, MAP_POS_Y, 1.0, 0.0, mapFrameImg_, true);
 }
 
 void MiniMap::Release(void)
