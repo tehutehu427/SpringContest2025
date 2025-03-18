@@ -33,9 +33,9 @@ public:
 
 private:
 
-	Player* player_;		//プレイヤー
-	EnemyManager* eneMng_;	//敵
-	ItemManager* itemMng_;	//アイテム
+	std::unique_ptr<Player> player_;		//プレイヤー
+	std::unique_ptr<EnemyManager> eneMng_;	//敵
+	std::unique_ptr<ItemManager> itemMng_;	//アイテム
 
 	int mapFrameImg_;		//枠画像
 	int mapGroundImg_;		//枠内画像
