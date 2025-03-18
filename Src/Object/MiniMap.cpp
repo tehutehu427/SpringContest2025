@@ -1,3 +1,5 @@
+#include"../Manager/Generic/Resource.h"
+#include"../Manager/Generic/ResourceManager.h"
 #include"Player.h"
 #include"Manager/EnemyManager.h"
 #include"Manager/ItemManager.h"
@@ -15,7 +17,13 @@ MiniMap::~MiniMap()
 
 void MiniMap::Init(void)
 {
+	auto& res = ResourceManager::GetInstance();
 
+	//˜g
+	mapFrameImg_ = res.Load(ResourceManager::SRC::MAP_FRAME).handleId_;
+	
+	//˜g“à
+	mapGroundImg_ = res.Load(ResourceManager::SRC::MAP_GROUND).handleId_;
 }
 
 void MiniMap::Update(void)
