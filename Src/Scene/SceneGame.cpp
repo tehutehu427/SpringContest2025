@@ -5,6 +5,7 @@
 #include"../Manager/System/Timer.h"
 #include"../Manager/Generic/Camera.h"
 #include"../Manager/System/Collision.h"
+#include "../Object/MiniMap.h"
 #include "../Object/Manager/ItemManager.h"
 #include "../Object/Item.h"
 #include "../Object/Manager/EnemyManager.h"
@@ -41,6 +42,10 @@ void SceneGame::Init(void)
 	itemMng_ = std::make_unique<ItemManager>();
 	itemMng_->Init();
 
+	//アイテムの初期化
+	miniMap_ = std::make_unique<MiniMap>(player_,enmMng_,itemMng_);
+	miniMap_->Init();
+
 	//カメラをプレイヤーに追従
 	camera->SetFollow(&player_->GetTransform());
 }
@@ -62,6 +67,9 @@ void SceneGame::Update(void)
 
 	//アイテムの更新
 	itemMng_->Update();
+
+	//ミニマップの更新
+	miniMap_->Update();
 
 	//当たり判定
 	Collision();
@@ -87,10 +95,16 @@ void SceneGame::Draw(void)
 
 	//アイテムの描画
 	itemMng_->Draw();
+
+	//ミニマップの描画
+	miniMap_->Draw();
 }
 
 void SceneGame::Release(void)
 {
+	//ミニマップの解放
+	miniMap_->Release();
+
 	//アイテムの解放
 	itemMng_->Release();
 
