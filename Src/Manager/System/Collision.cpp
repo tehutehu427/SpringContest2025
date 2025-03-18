@@ -119,3 +119,19 @@ bool Collision::IsHitSphereCapsule(const VECTOR& sphPos, float sphRadius, const 
 
     return ret;
 }
+
+const bool Collision::IsHitUnitStageObject(const int& _modelId, const VECTOR& _pos, const float& _radius) const
+{
+    bool ret = false;
+
+    //衝突判定
+    auto info = MV1CollCheck_Sphere(_modelId, -1, _pos, _radius, -1);
+    if (info.HitNum > 0)
+    {
+        ret = true;
+    }
+
+    // 検出した地面ポリゴン情報の後始末
+    MV1CollResultPolyDimTerminate(info);
+    return ret;
+}
