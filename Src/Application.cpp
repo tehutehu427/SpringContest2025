@@ -76,7 +76,7 @@ void Application::Run(void)
 	MSG msg;
 
 	// ゲームループ
-	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
+	while (ProcessMessage() == 0)
 	{
 		//メッセージループ
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
@@ -88,10 +88,39 @@ void Application::Run(void)
 		Sleep(1);	//システムに処理を返す
 		currentFrame_ = GetNowCount();	//現在のフレーム数を獲得
 
-		inputManager.Update();
-		sceneManager.Update();
+		//現在の時刻が、前回のフレーム時より
+		//1/60秒経過していたら処理を実行する
+		if (currentFrame_ - lastFrame_ >= FRAME_RATE)
+		{
+			//フレーム実行時の時間を更新
+			lastFrame_ = currentFrame_;
 
-		sceneManager.Draw();
+			//フレーム数のカウント
+			frameCnt_++;
+
+			//ESCAPEキーが押されたら終了
+			if (CheckHitKey(KEY_INPUT_ESCAPE) == 1)
+			{
+				return;
+			}
+
+			//更新処理
+			inputManager.Update();
+			sceneManager.Update();
+
+			//描画処理
+			sceneManager.Draw();
+
+			//フレームレート計算
+			CalcFrameRate();
+
+			//フレームレートの表示(デバッグ)
+			DrawFrameRate();
+
+			//フロントバッファに書き出し
+			ScreenFlip();
+
+		}
 	}
 }
 
@@ -140,4 +169,54 @@ Application::Application(void)
 {
 	isInitFail_ = false;
 	isReleaseFail_ = false;
+}
+
+void Application::CalcFrameRate()
+{
+	//前回のフレームレート更新からの経過時間を求める
+	int nDifTime = currentFrame_ - updateFrameRateTime_;
+
+	//前回のフレームレートを更新から
+	//1秒以上経過していたらフレームレートを更新する
+	if (nDifTime > 1000)
+	{
+		//フレーム回数を1ミリ秒に合わせる
+		//小数まで出したのでfloatにキャスト
+		float fFrameCnt = (float)(frameCnt_ * 1000);
+
+		//フレームレートを求める
+		//理想通りなら 60000 / 1000 で 60 になる
+		frameRate_ = fFrameCnt / nDifTime;
+
+		//フレームカウントをクリア
+		frameCnt_ = 0;
+
+		//フレームレート更新時間を更新
+		updateFrameRateTime_ = currentFrame_;
+	}
+}
+
+void Application::DrawFrameRate()
+{
+	int fontHandle;
+	int fontSize = 20;
+	int fontTickness = 8;
+
+	fontHandle = CreateFontToHandle(NULL, fontSize, fontTickness, NULL);
+
+	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_TAB) && !isDrawFrameRate_)
+	{
+		isDrawFrameRate_ = true;
+	}
+	else if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_TAB) && isDrawFrameRate_)
+	{
+		isDrawFrameRate_ = false;
+	}
+
+	if (isDrawFrameRate_)
+	{
+		DrawFormatStringToHandle(SCREEN_SIZE_X - 110, 2, GetColor(255, 255, 30), fontHandle, "FPS[%.2f]", frameRate_);
+	}
+
+	DeleteFontToHandle(fontHandle);
 }

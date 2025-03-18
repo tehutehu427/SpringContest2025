@@ -134,8 +134,8 @@ void SceneManager::Draw(void)
 	// 暗転・明転
 	fader_->Draw();
 
-	//フロントバッファに書き出し
-	ScreenFlip();
+	////フロントバッファに書き出し
+	//ScreenFlip();
 }
 
 void SceneManager::Destroy(void)
