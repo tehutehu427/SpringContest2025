@@ -3,6 +3,8 @@
 #include"../Manager/Generic/SceneManager.h"
 #include"../Manager/Generic/InputManager.h"
 #include"../Manager/System/Timer.h"
+#include"../Manager/Generic/Camera.h"
+#include"../Manager/System/Collision.h"
 #include "../Object/Manager/ItemManager.h"
 #include "../Object/Item.h"
 #include "../Object/Manager/EnemyManager.h"
@@ -16,9 +18,19 @@ SceneGame::SceneGame()
 
 void SceneGame::Init(void)
 {
+	//カメラ
+	auto camera = SceneManager::GetInstance().GetCamera();
+
+	//カメラを固定に設定
+	camera->ChangeMode(Camera::MODE::FOLLOW_PERSPECTIVE);
+
 	//ステージの初期化
 	stage_ = std::make_unique<Stage>();
 	stage_->Init();
+
+	//プレイヤーの初期化
+	player_ = std::make_unique<Player>();
+	player_->Init();
 
 	//敵の初期化
 	enmMng_ = std::make_unique<EnemyManager>();
@@ -27,6 +39,9 @@ void SceneGame::Init(void)
 	//アイテムの初期化
 	itemMng_ = std::make_unique<ItemManager>();
 	itemMng_->Init();
+
+	//カメラをプレイヤーに追従
+	camera->SetFollow(&player_->GetTransform());
 }
 
 void SceneGame::Update(void)
@@ -38,11 +53,17 @@ void SceneGame::Update(void)
 	//ステージの更新
 	stage_->Update();
 
+	//プレイヤーの更新
+	player_->Update();
+
 	//敵の更新
 	enmMng_->Update();
 
 	//アイテムの更新
 	itemMng_->Update();
+
+	//当たり判定
+	Collision();
 }
 
 void SceneGame::Draw(void)
@@ -56,6 +77,9 @@ void SceneGame::Draw(void)
 
 	//ステージの描画
 	stage_->Draw();
+
+	//プレイヤーの描画
+	player_->Draw();
 
 	//敵の描画
 	enmMng_->Draw();
@@ -71,6 +95,9 @@ void SceneGame::Release(void)
 
 	//敵の解放
 	enmMng_->Release();
+
+	//プレイヤーの解放
+	player_->Release();
 }
 
 void SceneGame::DrawDebug(void)
@@ -78,4 +105,12 @@ void SceneGame::DrawDebug(void)
 	//デバッグ
 	//DrawBox(0 + 30, 0 + 30, Application::SCREEN_SIZE_X - 30, Application::SCREEN_SIZE_Y - 30, 0xff0000, true);
 	DrawString(0, 0, "SceneGame", 0xffffff);
+}
+
+void SceneGame::Collision(void)
+{
+	auto& col = Collision::GetInstance();
+
+	//プレイヤーとステージの当たり判定
+	//if(col.IsHitUnitStageObject(stage_))
 }
