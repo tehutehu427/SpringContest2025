@@ -43,5 +43,8 @@ private:
 
     //描画(デバッグ)
     void DrawDebug(void);
+
+    //当たり判定
+    void Collision(void);
 };
 

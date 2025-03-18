@@ -61,6 +61,9 @@ void SceneGame::Update(void)
 
 	//アイテムの更新
 	itemMng_->Update();
+
+	//当たり判定
+	Collision();
 }
 
 void SceneGame::Draw(void)
@@ -102,4 +105,10 @@ void SceneGame::DrawDebug(void)
 	//デバッグ
 	//DrawBox(0 + 30, 0 + 30, Application::SCREEN_SIZE_X - 30, Application::SCREEN_SIZE_Y - 30, 0xff0000, true);
 	DrawString(0, 0, "SceneGame", 0xffffff);
+}
+
+void SceneGame::Collision(void)
+{
+	//プレイヤーとステージの当たり判定
+	//if()
 }
