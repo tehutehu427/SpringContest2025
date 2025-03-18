@@ -1,7 +1,10 @@
 #pragma once
+
+#include<memory>
 #include "SceneBase.h"
 
 class Grid;
+class titleUi;
 
 class SceneTitle : public SceneBase
 {
@@ -25,6 +28,9 @@ private:
 
     //グリッド線
     Grid* grid_;
+
+    //タイトルUI
+    std::unique_ptr<titleUi> ui_;
 
     //描画(デバッグ)
     void DrawDebug(void);

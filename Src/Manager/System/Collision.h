@@ -32,6 +32,15 @@ public:
 		const VECTOR& sphPos, float sphRadius,
 		const VECTOR& capPos1, const VECTOR& capPos2, float capRadius);
 
+	/// <summary>
+	/// ステージモデルとキャラクターの衝突判定
+	/// </summary>
+	/// <param name="_modelId"></param>ステージモデル
+	/// <param name="_pos"></param>キャラクターの座標
+	/// <param name="_radius"></param>キャラクターの半径
+	/// <returns></returns>
+	const bool IsHitUnitStageObject(const int& _modelId, const VECTOR& _pos, const float& _radius)const;
+
 private:
 	//コンストラクタ＆デストラクタ
 	Collision(void) = default;

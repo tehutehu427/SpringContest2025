@@ -4,7 +4,7 @@ class Player : public UnitBase
 {
 public:
 	//コンストラクタ
-	Player();
+	Player() = default;
 	//デストラクタ
 	~Player()override;
 
