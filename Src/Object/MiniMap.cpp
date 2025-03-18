@@ -15,6 +15,7 @@ MiniMap::~MiniMap()
 
 void MiniMap::Init(void)
 {
+
 }
 
 void MiniMap::Update(void)
