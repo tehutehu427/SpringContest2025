@@ -2,6 +2,7 @@
 #include"../Manager/Generic/SceneManager.h"
 #include"../Manager/Generic/Camera.h"
 #include"../Manager/Generic/InputManager.h"
+#include"../DrawUI/titleUiDraw.h"
 #include"../Object/Grid.h"
 #include "SceneTitle.h"
 
@@ -15,8 +16,12 @@ void SceneTitle::Init(void)
 	auto camera = SceneManager::GetInstance().GetCamera();
 	camera->ChangeMode(Camera::MODE::FREE);
 
+	//ƒOƒŠƒbƒhü
 	grid_ = new Grid();
 	grid_->Init();
+
+	//UI
+	ui_ = std::make_unique<titleUi>();
 }
 
 void SceneTitle::Update(void)
@@ -37,6 +42,9 @@ void SceneTitle::Draw(void)
 	grid_->Draw();
 
 #endif // SCENE_DEBUG
+
+	//UI
+	ui_->Draw();
 }
 
 void SceneTitle::Release(void)
