@@ -24,10 +24,11 @@ public:
 
 	//カメラ座標関連の定数---------------------------------------------------------------------
 	
-	static constexpr VECTOR DEFAULT_CAMERA_POS = { 0.0f, 100.0f, -500.0f };			//カメラの初期座標
+	static constexpr VECTOR DEFAULT_CAMERA_POS = { 0.0f, 100.0f, -500.0f };					//カメラの初期座標
 
-	static constexpr VECTOR RELATIVE_C2T_POS = { 0.0f, -400.0f, 500.0f };			//カメラ位置から注視点までの相対座標
-
+	static constexpr VECTOR RELATIVE_C2T_POS = { 0.0f, -400.0f, 500.0f };					//カメラ位置から注視点までの相対座標
+	
+	static constexpr VECTOR RELATIVE_C2T_POS_FOLLOW_PERSPECTIVE = { 0.0f, 0.0f, 200.0f };	//カメラ位置から注視点までの相対座標(追従対象視点)
 	
 	static constexpr VECTOR RELATIVE_F2C_POS_FOLLOW = { 0.0f, 500.0f, -500.0f };	//追従対象からカメラ位置までの相対座標(完全追従)
 
@@ -53,11 +54,12 @@ public:
 	enum class MODE
 	{
 		NONE,
-		FIXED_POINT,	//定点カメラ
-		FREE,			//フリーモード
-		FOLLOW,			//追従モード
-		FOLLOW_SPRING,	//ばね付き追従モード
-		SHAKE			//カメラ揺らし
+		FIXED_POINT,		//定点カメラ
+		FREE,				//フリーモード
+		FOLLOW,				//追従モード
+		FOLLOW_SPRING,		//ばね付き追従モード
+		FOLLOW_PERSPECTIVE,	//追従対象視点モード
+		SHAKE				//カメラ揺らし
 	};
 
 	//コンストラクタ
@@ -136,11 +138,12 @@ private:
 	void SetDefault(void);
 
 	//カメラの描画モード関連------------------
-	void SetBeforeDrawFixedPoint(void);		//定点カメラ
-	void SetBeforeDrawFree(void);			//フリーカメラ
-	void SetBeforeDrawFollow(void);			//追従カメラ
-	void SetBeforeDrawFollowSpring(void);	//ばね追従カメラ
-	void SetBeforeDrawShake(void);			//カメラシェイク
+	void SetBeforeDrawFixedPoint(void);			//定点カメラ
+	void SetBeforeDrawFree(void);				//フリーカメラ
+	void SetBeforeDrawFollow(void);				//追従カメラ
+	void SetBeforeDrawFollowSpring(void);		//ばね追従カメラ
+	void SetBeforeDrawFollowPerspective(void);	//追従対象視点カメラ
+	void SetBeforeDrawShake(void);				//カメラシェイク
 	//----------------------------------------
 
 	//カメラシェイク

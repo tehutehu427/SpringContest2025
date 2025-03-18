@@ -9,6 +9,7 @@
 #include "../Object/Item.h"
 #include "../Object/Manager/EnemyManager.h"
 #include "../Object/Enemy.h"
+#include "../Object/Player.h"
 #include "../Object/Stage.h"
 #include "SceneGame.h"
 
