@@ -62,10 +62,6 @@ public:
 
 private:
 
-	//フレーム固定用
-	int currentFrame_;	//現在のフレームを保存
-	int lastFrame_;		//最後に実行したフレームを保存
-
 	// 静的インスタンス
 	static Application* instance_;
 
@@ -87,4 +83,22 @@ private:
 
 	// デストラクタも同様
 	~Application(void) = default;
+
+	//フレームレート関連
+	//---------------------------------
+	int currentFrame_;	//現在のフレームを保存
+	int lastFrame_;		//最後に実行したフレームを保存
+
+	int frameCnt_ = 0;				//フレームカウント用
+	int updateFrameRateTime_ = 0;	//フレームレートを更新した時間
+
+	float frameRate_ = 0.f;			//フレームレート(表示用)
+
+	bool isDrawFrameRate_ = false;	//フレームレートの表示フラグ(true:表示)
+
+	//フレームレート計算
+	void CalcFrameRate();
+
+	//フレームレート表示(デバッグ用)
+	void DrawFrameRate();
 };

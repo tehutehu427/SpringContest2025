@@ -2,8 +2,27 @@
 #include "UnitBase.h"
 class Player : public UnitBase
 {
+
+	//列挙型
+	enum class DIRECTION
+	{
+		FRONT,
+		LEFT,
+		RIGHT,
+		BACK,
+		MAX
+	};
+
+public:
+
+	//プレイヤーサイズ
+	static constexpr int SIZE = 10;
+	//プレイヤースピード
+	static constexpr int SPEED = 1;
+
+
 	//コンストラクタ
-	Player();
+	Player() = default;
 	//デストラクタ
 	~Player()override;
 
@@ -15,5 +34,11 @@ class Player : public UnitBase
 	void Draw(void)override;
 	//解放
 	void Release(void)override;
+
+private:
+	
+	VECTOR axis_;
+	DIRECTION direction_;
+	
 };
 

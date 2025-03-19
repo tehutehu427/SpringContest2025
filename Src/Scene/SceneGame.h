@@ -4,8 +4,10 @@
 #include "SceneBase.h"
 
 class Stage;
+class Player;
 class EnemyManager;
 class ItemManager;
+class MiniMap;
 
 class SceneGame : public SceneBase
 {
@@ -31,13 +33,21 @@ private:
     //ステージ
     std::unique_ptr<Stage> stage_;
 
+    //プレイヤー
+    std::unique_ptr<Player> player_;
+
     //敵マネージャー
     std::unique_ptr<EnemyManager> enmMng_;
 
     //アイテムマネージャー
     std::unique_ptr<ItemManager> itemMng_;
 
+    //ミニマップ
+    std::unique_ptr<MiniMap> miniMap_;
+
     //描画(デバッグ)
     void DrawDebug(void);
-};
 
+    //当たり判定
+    void Collision(void);
+};
