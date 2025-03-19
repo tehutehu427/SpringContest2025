@@ -15,7 +15,9 @@ public:
 	//ミニマップ
 	static constexpr int MAP_SIZE = 100;										//ミニマップ画像の大きさ
 	static constexpr float MAP_POS_X = Application::SCREEN_SIZE_X - MAP_SIZE;	//ミニマップのX座標
-	static constexpr float MAP_POS_Y = Application::SCREEN_SIZE_Y - MAP_SIZE;	//ミニマップのY座標
+	static constexpr float MAP_POS_Y = MAP_SIZE;								//ミニマップのY座標
+	static constexpr double MAP_EX_RATE = 2.0;									//ミニマップ拡大率
+	static constexpr double PLAYER_EX_RATE = 1.0;								//プレイヤー拡大率
 
 	//コンストラクタ
 	MiniMap(Player* _player, EnemyManager* _eneMng, ItemManager* _itemMng);
@@ -39,5 +41,18 @@ private:
 
 	int mapFrameImg_;		//枠画像
 	int mapGroundImg_;		//枠内画像
+	int mapPlayerImg_;		//プレイヤー画像
+
+	//プレイヤー描画
+	void DrawPlayer(void);
+
+	//敵描画
+	void DrawEnemy(void);
+
+	//アイテム描画
+	void DrawItem(void);
+
+	//視野描画
+	void DrawVision(void);
 };
 

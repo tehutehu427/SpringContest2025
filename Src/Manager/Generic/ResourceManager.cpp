@@ -63,6 +63,10 @@ void ResourceManager::InitGame(void)
 	res = Resource(Resource::TYPE::IMG, Application::PATH_IMAGE + "MiniMap/MapGround.png");
 	resourcesMap_.emplace(SRC::MAP_GROUND, res);
 
+	//ミニマップ用プレイヤー
+	res = Resource(Resource::TYPE::IMG, Application::PATH_IMAGE + "MiniMap/MapPlayer.png");
+	resourcesMap_.emplace(SRC::MAP_PLAYER, res);
+
 	ResourcePlayer();
 	ResourceEnemy();
 }
