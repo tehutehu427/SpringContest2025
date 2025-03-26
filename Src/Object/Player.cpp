@@ -1,5 +1,6 @@
 #include <DxLib.h>
 #include"../Utility/AsoUtility.h"
+#include"../Manager/Generic/InputManager.h"
 #include "Player.h"
 
 Player::Player()
@@ -25,31 +26,31 @@ void Player::Init(void)
 
 void Player::Update(void)
 {
-	
+	auto& ins = InputManager::GetInstance();
 	//北に移動
 	if (direction_ == DIRECTION::NORTH)
 	{
-		trans_.pos.z--;
+		trans_.pos.z++;
 	}
 	//西
 	if (direction_ == DIRECTION::WEST)
 	{
-		trans_.pos.x--;
+		trans_.pos.x++;
 	}
 	//東
 	if (direction_ == DIRECTION::EAST )
 	{
-		trans_.pos.x++;
+		trans_.pos.x--;
 	}
 	//南
 	if (direction_ == DIRECTION:: SOUTH)
 	{
-		trans_.pos.z++;
+		trans_.pos.z--;
 	}
 
 
 	
-	if (CheckHitKey(KEY_INPUT_A))
+	if (ins.IsTrgDown(KEY_INPUT_A))
 	{
 		if (direction_ == DIRECTION::NORTH)
 		{
@@ -62,11 +63,11 @@ void Player::Update(void)
 		}
 
 		//カメラの方向を変える
-		Turn(-90.0f, axis_);
+		Turn(-90.0f, AsoUtility::AXIS_Y);
 
 	}
   //右
-	if (CheckHitKey(KEY_INPUT_D))
+	if (ins.IsTrgDown(KEY_INPUT_D))
 	{
 
 		if (direction_ == DIRECTION::NORTH)
@@ -80,10 +81,10 @@ void Player::Update(void)
 		}
 
 		//カメラの方向を変える
-		Turn(90.0f, axis_);
+		Turn(90.0f, AsoUtility::AXIS_Y);
 	}
 	//後ろ
-	if (CheckHitKey(KEY_INPUT_S))
+	if (ins.IsTrgDown(KEY_INPUT_S))
 	{
 		if (direction_ == DIRECTION::NORTH || direction_ == DIRECTION::EAST)
 		{
@@ -97,7 +98,7 @@ void Player::Update(void)
 		}
 
 		//カメラの方向を変える
-		Turn(180.0f, axis_);
+		Turn(180.0f, AsoUtility::AXIS_Y);
 	}
 }
 
