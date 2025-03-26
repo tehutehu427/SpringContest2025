@@ -13,11 +13,11 @@ class MiniMap
 public:
 
 	//ミニマップ
-	static constexpr int MAP_SIZE = 100;										//ミニマップ画像の大きさ
-	static constexpr float MAP_POS_X = Application::SCREEN_SIZE_X - MAP_SIZE;	//ミニマップのX座標
-	static constexpr float MAP_POS_Y = MAP_SIZE;								//ミニマップのY座標
-	static constexpr double MAP_EX_RATE = 2.0;									//ミニマップ拡大率
-	static constexpr double PLAYER_EX_RATE = 1.0;								//プレイヤー拡大率
+	static constexpr int MAP_SIZE = 130;											//ミニマップ画像の大きさ
+	static constexpr float MAP_POS_X = Application::SCREEN_SIZE_X - MAP_SIZE + 15;	//ミニマップのX座標
+	static constexpr float MAP_POS_Y = MAP_SIZE;									//ミニマップのY座標
+	static constexpr double MAP_EX_RATE = 1.0;										//ミニマップ拡大率
+	static constexpr double PLAYER_EX_RATE = 1.0;									//プレイヤー拡大率
 
 	//コンストラクタ
 	MiniMap(Player* _player, EnemyManager* _eneMng, ItemManager* _itemMng);
