@@ -4,6 +4,7 @@
 
 Player::Player()
 {
+	
 }
 
 Player::~Player()
@@ -18,84 +19,85 @@ void Player::Init(void)
 	//カメラ方向初期化
 	axis_ = { 0.0f,0.0f,0.0f };
 
-	direction_ = DIRECTION::FRONT;
+	//プレイヤーが向いている方向
+	direction_ == DIRECTION::NORTH;
 }
 
 void Player::Update(void)
 {
-
-	//前に移動
-	if (direction_ == DIRECTION::FRONT)
-	{
-		trans_.pos.z++;
-	}
-	//左
-	if (direction_ == DIRECTION::LEFT)
-	{
-		trans_.pos.x--;
-	}
-	//右
-	if (direction_ == DIRECTION::RIGHT)
-	{
-		trans_.pos.x++;
-	}
-	//後ろ
-	if (direction_ == DIRECTION::BACK)
+	
+	//北に移動
+	if (direction_ == DIRECTION::NORTH)
 	{
 		trans_.pos.z--;
 	}
-
-
-	//移動
-	 //前
-	if (CheckHitKey(KEY_INPUT_W))
+	//西
+	if (direction_ == DIRECTION::WEST)
 	{
-		//FRONTの場合
-		if (direction_ == DIRECTION::FRONT)
-		{
-			Turn(00.0f, axis_);
-			trans_.pos.z ++;
-		}
-		//LEFTの場合
-		if (direction_ == DIRECTION::LEFT)
-		{
-			Turn(-90.0f, axis_);
-			trans_.pos.x--;
-		}
-		//RIGHTの場合
-		if (direction_ == DIRECTION::RIGHT)
-		{
-			Turn(90.0f, axis_);
-			trans_.pos.x++;
-		}
-		//BACKの場合
-		if (direction_ == DIRECTION::BACK)
-		{
-			Turn(180.0f, axis_);
-			trans_.pos.z--;
-		}
-
-		//方向をFRONT変更
-		direction_ == DIRECTION::FRONT;
+		trans_.pos.x--;
 	}
-	//左
+	//東
+	if (direction_ == DIRECTION::EAST )
+	{
+		trans_.pos.x++;
+	}
+	//南
+	if (direction_ == DIRECTION:: SOUTH)
+	{
+		trans_.pos.z++;
+	}
+
+
+	
 	if (CheckHitKey(KEY_INPUT_A))
 	{
-	
-		
-		
-		//方向をLEFTに変更
-		direction_ == DIRECTION::LEFT;
+		if (direction_ == DIRECTION::NORTH)
+		{
+			//北の場合西に戻す
+			direction_ = DIRECTION::WEST;
+	    }
+		else
+		{
+		 direction_ = static_cast <DIRECTION>(static_cast <int> (direction_) - 1);
+		}
+
+		//カメラの方向を変える
+		Turn(-90.0f, axis_);
+
 	}
-	//右
+  //右
 	if (CheckHitKey(KEY_INPUT_D))
 	{
-		trans_.pos.x += 1;
+
+		if (direction_ == DIRECTION::NORTH)
+		{
+			//北の場合西に戻す
+			direction_ = DIRECTION::WEST;
+		}
+		else
+		{
+			direction_ = static_cast <DIRECTION>(static_cast <int> (direction_) + 1);
+		}
+
+		//カメラの方向を変える
+		Turn(90.0f, axis_);
 	}
 	//後ろ
 	if (CheckHitKey(KEY_INPUT_S))
 	{
-		trans_.pos.z += 1;
+		if (direction_ == DIRECTION::NORTH || direction_ == DIRECTION::EAST)
+		{
+			//北と東向いてるとき
+			direction_ = static_cast <DIRECTION>(static_cast <int> (direction_) + 2);
+		}
+		else
+		{
+			//南と西向いてるとき
+			direction_ = static_cast <DIRECTION>(static_cast <int> (direction_) - 2);
+		}
+
+		//カメラの方向を変える
+		Turn(180.0f, axis_);
 	}
 }
 

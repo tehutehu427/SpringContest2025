@@ -6,12 +6,13 @@ class Player : public UnitBase
 	//—ñ‹“Œ^
 	enum class DIRECTION
 	{
-		FRONT,
-		LEFT,
-		RIGHT,
-		BACK,
-		MAX
+		NORTH,
+		EAST,
+		SOUTH,
+		WEST
 	};
+
+	
 
 public:
 
