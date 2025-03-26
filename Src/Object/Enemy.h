@@ -62,6 +62,24 @@ private:
 	void Clockwise(void);
 	void CounterClockwise(void);
 
+	/// <summary>
+	/// とある点からとある点までの移動ベクトルを返す
+	/// </summary>
+	/// <param name="_start">狙う側</param>
+	/// <param name="_goal">向かう先</param>
+	/// <param name="_speed">設定速度(未設定だと、方向ベクトルのみを返す)</param>
+	/// <returns>向かう先までの移動ベクトル</returns>
+	const VECTOR GetMoveVec(const VECTOR _start, const VECTOR _goal, const float _speed = 1.0f)const;
+
+	/// <summary>
+	/// とある点からとある点までの距離を返す
+	/// </summary>
+	/// <param name="_start">開始地点</param>
+	/// <param name="_goal">終了地点</param>
+	/// <returns>距離</returns>
+	const float CalcDistance(const VECTOR _start, const VECTOR _goal)const;
+
+
 	//移動スピード
 	float moveSpeed_;
 

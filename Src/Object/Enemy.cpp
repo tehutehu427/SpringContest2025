@@ -181,3 +181,30 @@ Enemy::MOVEDIR Enemy::SetMoveDir(const MOVEDIR& moveDir)
 	return moveDir_=moveDir;
 }
 
+const VECTOR Enemy::GetMoveVec(const VECTOR _start, const VECTOR _goal, const float _speed)const
+{
+	//標的への方向ベクトルを取得
+	VECTOR targetVec = VSub(_goal, _start);
+
+	//正規化
+	targetVec = VNorm(targetVec);
+
+	//Y座標は必要ないので要素を消す
+	targetVec = { targetVec.x,0.0f,targetVec.z };
+
+	//移動量を求める
+	VECTOR ret = VScale(targetVec, _speed);
+
+	return ret;
+}
+
+const float Enemy::CalcDistance(const VECTOR _start, const VECTOR _goal)const
+{
+	VECTOR ret;
+
+	ret.x = powf(_goal.x - _start.x, 2);
+	ret.y = powf(_goal.y - _start.y, 2);
+	ret.z = powf(_goal.z - _start.z, 2);
+
+	return sqrtf(ret.x + ret.y + ret.z);
+}
