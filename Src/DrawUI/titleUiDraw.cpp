@@ -1,13 +1,13 @@
 #include<DxLib.h>
 #include"StageUiFont.h"
 #include"titleUiDraw.h"
+#include"../Application.h"
 
 //デフォルトコンストラクタ
 titleUi::titleUi(void)
 {
 	frameCount_ = 0;		//フレーム制御
 	isBlinking_ = false;	//点滅フラグ
-	selectedFont_ = FONT_TYPE::STATE;		//デフォルトは開始
 	changeFlag_ = false;
 }
 
@@ -29,24 +29,20 @@ void titleUi::DrawFont(void)
 	struct FontData
 	{
 		const char* message;
-		FONT_TYPE type;
 	};
 
 	FontData fontList[] = {
-		{"スペースを押して開始", FONT_TYPE::STATE},
-		{"操作説明", FONT_TYPE::OPERATION},
-		{"遊び方", FONT_TYPE::EXPLANATION},
-		{"クレジット",FONT_TYPE::CREDIT}
+		{"スペースを押して開始"}
 	};
 
 
 	for (const auto& font : fontList)
 	{
 		int textWidth = GetDrawStringWidth(font.message, static_cast<int>(strlen(font.message)));
-		int xPos = 0 /*表示位置*/;
-		int yPos = 0 /*表示位置*/;
+		int xPos = (Application::SCREEN_SIZE_X - textWidth - (textWidth / 2)) / 2/*表示位置*/;
+		int yPos = Application::SCREEN_SIZE_Y / 2 /*表示位置*/;
 
-		if (selectedFont_ == font.type && isBlinking_)
+		if (isBlinking_)
 		{
 			StageUiFont::GetInstance().DrawText(xPos, yPos, font.message, 0xFFFFFF, 24, StageUiFont::FONT_TYPE_EDGE, 3);  // 点滅する文字（白）
 		}
