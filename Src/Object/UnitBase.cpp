@@ -49,7 +49,7 @@ void UnitBase::ResetAnim(const ANIM _anim, const float _speed)
 void UnitBase::Turn(const float _deg, const VECTOR& _axis)
 {
 	trans_.quaRot =
-		trans_.quaRot.AngleAxis(AsoUtility::Deg2RadF(_deg), _axis);
+		trans_.quaRot.Mult(trans_.quaRot, (Quaternion::AngleAxis(AsoUtility::Deg2RadF(_deg), _axis)));
 }
 
 void UnitBase::Anim(void)
