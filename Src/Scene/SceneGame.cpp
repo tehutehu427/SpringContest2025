@@ -48,6 +48,7 @@ void SceneGame::Init(void)
 
 	//カメラをプレイヤーに追従
 	camera->SetFollow(&player_->GetTransform());
+	camera->SetRot(player_->GetRot());
 }
 
 void SceneGame::Update(void)
