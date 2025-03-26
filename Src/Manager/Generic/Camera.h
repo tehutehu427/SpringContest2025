@@ -92,7 +92,18 @@ public:
 	//’Ç]‘ÎÛ‚Ìİ’è
 	const void SetFollow(const Transform* follow);
 
+	/// <summary>
+	/// À•W‚Ìİ’è
+	/// </summary>
+	/// <param name="pos">İ’è‚·‚éÀ•W</param>
+	/// <param name="target">İ’è‚·‚é’‹“_</param>
 	void SetPos(const VECTOR& pos,const VECTOR& target);
+
+	/// <summary>
+	/// ‰ñ“]‚Ìİ’è
+	/// </summary>
+	/// <param name="_rot">İ’è‚·‚é‰ñ“]</param>
+	void SetRot(const Quaternion& _rot) { rot_ = _rot; }
 
 private:
 

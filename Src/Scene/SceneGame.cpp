@@ -4,6 +4,8 @@
 #include"../Manager/Generic/InputManager.h"
 #include"../Manager/System/Timer.h"
 #include"../Manager/Generic/Camera.h"
+#include"../Manager/System/Collision.h"
+#include "../Object/MiniMap.h"
 #include "../Object/Manager/ItemManager.h"
 #include "../Object/Item.h"
 #include "../Object/Manager/EnemyManager.h"
@@ -40,8 +42,13 @@ void SceneGame::Init(void)
 	itemMng_ = std::make_unique<ItemManager>();
 	itemMng_->Init();
 
+	//アイテムの初期化
+	miniMap_ = std::make_unique<MiniMap>(player_.get(), enmMng_.get(), itemMng_.get());
+	miniMap_->Init();
+
 	//カメラをプレイヤーに追従
 	camera->SetFollow(&player_->GetTransform());
+	camera->SetRot(player_->GetRot());
 }
 
 void SceneGame::Update(void)
@@ -61,6 +68,12 @@ void SceneGame::Update(void)
 
 	//アイテムの更新
 	itemMng_->Update();
+
+	//ミニマップの更新
+	miniMap_->Update();
+
+	//当たり判定
+	Collision();
 }
 
 void SceneGame::Draw(void)
@@ -83,10 +96,16 @@ void SceneGame::Draw(void)
 
 	//アイテムの描画
 	itemMng_->Draw();
+
+	//ミニマップの描画
+	miniMap_->Draw();
 }
 
 void SceneGame::Release(void)
 {
+	//ミニマップの解放
+	miniMap_->Release();
+
 	//アイテムの解放
 	itemMng_->Release();
 
@@ -102,4 +121,14 @@ void SceneGame::DrawDebug(void)
 	//デバッグ
 	//DrawBox(0 + 30, 0 + 30, Application::SCREEN_SIZE_X - 30, Application::SCREEN_SIZE_Y - 30, 0xff0000, true);
 	DrawString(0, 0, "SceneGame", 0xffffff);
+}
+
+void SceneGame::Collision(void)
+{
+	auto& col = Collision::GetInstance();
+
+	//プレイヤーと敵の当たり判定
+	//for(auto enm:enmMng_->)
+	
+	//if(col.IsHitUnitStageObject(stage_->GetModelId(),player_->GetPos(),Player::SIZE))
 }

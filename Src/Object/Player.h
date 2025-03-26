@@ -23,7 +23,7 @@ public:
 
 
 	//コンストラクタ
-	Player();
+	Player() = default;
 	//デストラクタ
 	~Player()override;
 

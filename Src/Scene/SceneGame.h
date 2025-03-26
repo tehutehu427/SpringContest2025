@@ -7,6 +7,7 @@ class Stage;
 class Player;
 class EnemyManager;
 class ItemManager;
+class MiniMap;
 
 class SceneGame : public SceneBase
 {
@@ -41,7 +42,12 @@ private:
     //アイテムマネージャー
     std::unique_ptr<ItemManager> itemMng_;
 
+    //ミニマップ
+    std::unique_ptr<MiniMap> miniMap_;
+
     //描画(デバッグ)
     void DrawDebug(void);
-};
 
+    //当たり判定
+    void Collision(void);
+};
