@@ -41,5 +41,6 @@ private:
 	VECTOR axis_;
 	DIRECTION direction_;
 	
+	
 };
 

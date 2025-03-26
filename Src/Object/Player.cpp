@@ -22,6 +22,10 @@ void Player::Init(void)
 
 	//プレイヤーが向いている方向
 	direction_ == DIRECTION::NORTH;
+
+	//プレイヤーの半径
+	radius_ = SIZE / 2;
+
 }
 
 void Player::Update(void)
@@ -62,7 +66,7 @@ void Player::Update(void)
 		 direction_ = static_cast <DIRECTION>(static_cast <int> (direction_) - 1);
 		}
 
-		//カメラの方向を変える
+		//カメラの方向を変える　　↓回転軸
 		Turn(-90.0f, AsoUtility::AXIS_Y);
 
 	}
