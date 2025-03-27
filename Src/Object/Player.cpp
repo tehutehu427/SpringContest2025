@@ -1,6 +1,12 @@
 #include <DxLib.h>
 #include"../Utility/AsoUtility.h"
+#include"../Manager/Generic/InputManager.h"
 #include "Player.h"
+
+Player::Player()
+{
+	
+}
 
 Player::~Player()
 {
@@ -14,84 +20,89 @@ void Player::Init(void)
 	//カメラ方向初期化
 	axis_ = { 0.0f,0.0f,0.0f };
 
-	direction_ = DIRECTION::FRONT;
+	//プレイヤーが向いている方向
+	direction_ == DIRECTION::NORTH;
+
+	//プレイヤーの半径
+	radius_ = SIZE / 2;
+
 }
 
 void Player::Update(void)
 {
-
-	//前に移動
-	if (direction_ == DIRECTION::FRONT)
+	auto& ins = InputManager::GetInstance();
+	//北に移動
+	if (direction_ == DIRECTION::NORTH)
 	{
 		trans_.pos.z++;
 	}
-	//左
-	if (direction_ == DIRECTION::LEFT)
-	{
-		trans_.pos.x--;
-	}
-	//右
-	if (direction_ == DIRECTION::RIGHT)
+	//西
+	if (direction_ == DIRECTION::WEST)
 	{
 		trans_.pos.x++;
 	}
-	//後ろ
-	if (direction_ == DIRECTION::BACK)
+	//東
+	if (direction_ == DIRECTION::EAST )
+	{
+		trans_.pos.x--;
+	}
+	//南
+	if (direction_ == DIRECTION:: SOUTH)
 	{
 		trans_.pos.z--;
 	}
 
 
-	//移動
-	 //前
-	if (CheckHitKey(KEY_INPUT_W))
+	
+	if (ins.IsTrgDown(KEY_INPUT_A))
 	{
-		//FRONTの場合
-		if (direction_ == DIRECTION::FRONT)
+		if (direction_ == DIRECTION::NORTH)
 		{
-			Turn(00.0f, axis_);
-			trans_.pos.z ++;
-		}
-		//LEFTの場合
-		if (direction_ == DIRECTION::LEFT)
+			//北の場合西に戻す
+			direction_ = DIRECTION::WEST;
+	    }
+		else
 		{
-			Turn(-90.0f, axis_);
-			trans_.pos.x--;
-		}
-		//RIGHTの場合
-		if (direction_ == DIRECTION::RIGHT)
-		{
-			Turn(90.0f, axis_);
-			trans_.pos.x++;
-		}
-		//BACKの場合
-		if (direction_ == DIRECTION::BACK)
-		{
-			Turn(180.0f, axis_);
-			trans_.pos.z--;
+		 direction_ = static_cast <DIRECTION>(static_cast <int> (direction_) - 1);
 		}
 
-		//方向をFRONT変更
-		direction_ == DIRECTION::FRONT;
+		//カメラの方向を変える　　↓回転軸
+		Turn(-90.0f, AsoUtility::AXIS_Y);
+
 	}
-	//左
-	if (CheckHitKey(KEY_INPUT_A))
+  //右
+	if (ins.IsTrgDown(KEY_INPUT_D))
 	{
-	
-		
-		
-		//方向をLEFTに変更
-		direction_ == DIRECTION::LEFT;
-	}
-	//右
-	if (CheckHitKey(KEY_INPUT_D))
-	{
-		trans_.pos.x += 1;
+
+		if (direction_ == DIRECTION::NORTH)
+		{
+			//北の場合西に戻す
+			direction_ = DIRECTION::WEST;
+		}
+		else
+		{
+			direction_ = static_cast <DIRECTION>(static_cast <int> (direction_) + 1);
+		}
+
+		//カメラの方向を変える
+		Turn(90.0f, AsoUtility::AXIS_Y);
 	}
 	//後ろ
-	if (CheckHitKey(KEY_INPUT_S))
+	if (ins.IsTrgDown(KEY_INPUT_S))
 	{
-		trans_.pos.z += 1;
+		if (direction_ == DIRECTION::NORTH || direction_ == DIRECTION::EAST)
+		{
+			//北と東向いてるとき
+			direction_ = static_cast <DIRECTION>(static_cast <int> (direction_) + 2);
+		}
+		else
+		{
+			//南と西向いてるとき
+			direction_ = static_cast <DIRECTION>(static_cast <int> (direction_) - 2);
+		}
+
+		//カメラの方向を変える
+		Turn(180.0f, AsoUtility::AXIS_Y);
 	}
 }
 

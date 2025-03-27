@@ -6,12 +6,13 @@ class Player : public UnitBase
 	//列挙型
 	enum class DIRECTION
 	{
-		FRONT,
-		LEFT,
-		RIGHT,
-		BACK,
-		MAX
+		NORTH,
+		EAST,
+		SOUTH,
+		WEST
 	};
+
+	
 
 public:
 
@@ -22,7 +23,7 @@ public:
 
 
 	//コンストラクタ
-	Player() = default;
+	Player();
 	//デストラクタ
 	~Player()override;
 
@@ -39,6 +40,7 @@ private:
 	
 	VECTOR axis_;
 	DIRECTION direction_;
+	
 	
 };
 
