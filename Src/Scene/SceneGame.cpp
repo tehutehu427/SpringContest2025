@@ -43,7 +43,7 @@ void SceneGame::Init(void)
 	itemMng_->Init();
 
 	//アイテムの初期化
-	miniMap_ = std::make_unique<MiniMap>(player_.get(), enmMng_.get(), itemMng_.get());
+	miniMap_ = std::make_unique<MiniMap>(player_.get(), enmMng_.get(), itemMng_.get(),stage_.get());
 	miniMap_->Init();
 
 	//カメラをプレイヤーに追従

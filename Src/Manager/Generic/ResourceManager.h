@@ -22,7 +22,9 @@ public:
 		//ミニマップ関係
 		MAP_FRAME,
 		MAP_GROUND,
+		MAP_IMAGE,
 		MAP_PLAYER,
+		MAP_ENEMY,
 	};
 
 	// 明示的にインステンスを生成する
