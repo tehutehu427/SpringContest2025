@@ -17,6 +17,9 @@ void Enemy::Init(void)
 	trans_.rot = AsoUtility::VECTOR_ZERO;
 
 	moveDir_ = MOVEDIR::UP;
+
+	nowPos_ = AsoUtility::VECTOR_ZERO;
+	goalPos_ = AsoUtility::VECTOR_ZERO;
 }
 
 void Enemy::Update(void)
@@ -74,27 +77,41 @@ void Enemy::Clockwise(void)
 		trans_.pos.z += moveSpeed_;
 		if (trans_.pos.z >= movePointPos_[0].z) {
 			moveDir_ = MOVEDIR::RIGHT;
+
+			nowPos_ = movePointPos_[0];
+			goalPos_ = movePointPos_[1];
 		}
 		break;
 	case Enemy::MOVEDIR::LEFT:
 		trans_.pos.x -= moveSpeed_;
 		if (trans_.pos.x <= movePointPos_[3].x) {
 			moveDir_ = MOVEDIR::UP;
+
+			nowPos_ = movePointPos_[3];
+			goalPos_ = movePointPos_[0];
 		}
 		break;
 	case Enemy::MOVEDIR::RIGHT:
 		trans_.pos.x += moveSpeed_;
 		if (trans_.pos.x >= movePointPos_[1].x) {
 			moveDir_ = MOVEDIR::DOWN;
+
+			nowPos_ = movePointPos_[1];
+			goalPos_ = movePointPos_[2];
 		}
 		break;
 	case Enemy::MOVEDIR::DOWN:
 		trans_.pos.z -= moveSpeed_;
 		if (trans_.pos.z <= movePointPos_[2].z) {
 			moveDir_ = MOVEDIR::LEFT;
+
+			nowPos_ = movePointPos_[2];
+			goalPos_ = movePointPos_[3];
 		}
 		break;
 	}
+	GetMoveVec(nowPos_, goalPos_, moveSpeed_);
+	CalcDistance(nowPos_, goalPos_);
 }
 
 /// <summary>
@@ -110,27 +127,41 @@ void Enemy::CounterClockwise(void)
 		trans_.pos.z += moveSpeed_;
 		if (trans_.pos.z >= movePointPos_[0].z) {
 			moveDir_ = MOVEDIR::LEFT;
+		
+			nowPos_ = movePointPos_[0];
+			goalPos_ = movePointPos_[3];
 		}
 		break;
 	case Enemy::MOVEDIR::LEFT:
 		trans_.pos.x -= moveSpeed_;
 		if (trans_.pos.x <= movePointPos_[3].x) {
 			moveDir_ = MOVEDIR::DOWN;
+
+			nowPos_ = movePointPos_[3];
+			goalPos_ = movePointPos_[2];
 		}
 		break;
 	case Enemy::MOVEDIR::RIGHT:
 		trans_.pos.x += moveSpeed_;
 		if (trans_.pos.x >= movePointPos_[1].x) {
 			moveDir_ = MOVEDIR::UP;
+
+			nowPos_ = movePointPos_[1];
+			goalPos_ = movePointPos_[0];
 		}
 		break;
 	case Enemy::MOVEDIR::DOWN:
 		trans_.pos.z -= moveSpeed_;
 		if (trans_.pos.z <= movePointPos_[2].z) {
 			moveDir_ = MOVEDIR::RIGHT;
+
+			nowPos_ = movePointPos_[2];
+			goalPos_ = movePointPos_[1];
 		}
 		break;
 	}
+	GetMoveVec(nowPos_, goalPos_, moveSpeed_);
+	CalcDistance(nowPos_, goalPos_);
 }
 
 
@@ -171,11 +202,21 @@ void Enemy::SetMoveSpeed(const float& moveSpeed)
 	moveSpeed_ = moveSpeed;
 }
 
+/// <summary>
+/// éûåvâÒÇËÅAîΩéûåvâÒÇË
+/// </summary>
+/// <param name="moveClockDir"></param>
+/// <returns></returns>
 Enemy::MOVECLOCKDIR Enemy::SetMoveClockDir(const MOVECLOCKDIR& moveClockDir)
 {
 	return moveClockDir_=moveClockDir;
 }
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="moveDir"></param>
+/// <returns></returns>
 Enemy::MOVEDIR Enemy::SetMoveDir(const MOVEDIR& moveDir)
 {
 	return moveDir_=moveDir;
