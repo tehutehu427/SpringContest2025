@@ -3,6 +3,7 @@
 #include"../Manager/Generic/InputManager.h"
 #include "Player.h"
 
+//コンストラクタ
 Player::Player()
 {
 	
