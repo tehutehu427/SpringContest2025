@@ -92,6 +92,12 @@ private:
 	//移動ポイント
 	VECTOR movePointPos_[MOVE_POINT];
 
+	//現在位置
+	VECTOR nowPos_;
+
+	//移動位置
+	VECTOR goalPos_;
+
 	int DebugDrawPos;
 
 };
