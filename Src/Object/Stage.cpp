@@ -25,7 +25,7 @@ bool Stage::Init()
 	}
 
 	// モデルの位置・スケールを設定
-	model_.SetPosition(0.0f, -100.0f, 1000.0f);
+	model_.SetPosition(0.0f, 0.0f, 0.0f);
 	model_.SetScale(0.3f, 0.3f, 0.3f);
 
 	return true;

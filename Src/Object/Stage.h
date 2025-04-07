@@ -16,7 +16,7 @@ public:
     void Draw();    // 描画処理
 
     //モデルハンドルを返す
-    const int GetModelId(void) { model_.GetModelId(); }
+    const int GetModelId(void) { return model_.GetModelId(); }
     
     //座標を返す
     const VECTOR& GetPos(void) { return model_.GetPos(); }
