@@ -26,21 +26,11 @@ void titleUi::Draw(void)
 //フォントの描画処理
 void titleUi::DrawFont(void)
 {
-	struct FontData
-	{
-		const char* message;
-	};
-
-	FontData fontList[] = {
-		{"スペースを押して開始"}
-	};
-
-
-	for (const auto& font : fontList)
+	for (const auto& font : fontList_)
 	{
 		int textWidth = GetDrawStringWidth(font.message, static_cast<int>(strlen(font.message)));
 		int xPos = (Application::SCREEN_SIZE_X - textWidth - (textWidth / 2)) / 2/*表示位置*/;
-		int yPos = Application::SCREEN_SIZE_Y / 2 /*表示位置*/;
+		int yPos = Application::SCREEN_SIZE_Y / 2 + 100/*表示位置*/;
 
 		if (isBlinking_)
 		{
@@ -60,6 +50,11 @@ void titleUi::FontSettings(void)
 	frameCount_++;
 
 	//点滅タイミング(一定のフレーム事に切り替え)
-	isBlinking_ = (frameCount_ / blinkInterval_) % 2 == 0;
+	isBlinking_ = (frameCount_ / blinkInterval_) % 2 ? true : false;
 
+}
+
+void titleUi::AddCharactor(const char* _char)
+{
+	fontList_.emplace_back(_char);
 }

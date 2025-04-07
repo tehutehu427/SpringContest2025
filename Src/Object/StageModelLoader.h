@@ -4,12 +4,16 @@
 //モデルを管理するクラス
 class StageModelLoader {
 private:
-	int modelHandle_;			//モデルのハンド
+	int modelHandle_;			//モデルのハンドル
 	VECTOR position_;			//モデルの位置
+	VECTOR compPos_;			//モデルの補完用座標
 	VECTOR rotation_;			//モデルの回転角
 	VECTOR scale_;				//モデルのスケール
 
 public:
+
+	static constexpr VECTOR COMP_POS = { -110.0f,0.0f,110.0f };
+
 	//コンストラクタ
 	StageModelLoader();
 	

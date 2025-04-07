@@ -1,6 +1,7 @@
 #include <DxLib.h>
 #include "EnemyManager.h"
 #include"../Enemy.h"
+#include"../../Manager/System/Collision.h"
 #include"../../Utility/AsoUtility.h"
 //EnemyManager* EnemyManager::instance_ = nullptr;
 //
@@ -60,15 +61,13 @@ void EnemyManager::Release(void)
 	//delete instance_;
 }
 
-Enemy* EnemyManager::EnemyClass(void)
+std::shared_ptr<Enemy> EnemyManager::EnemyClass(void)
 {
-	for (int i = 0; i < ENEMY_NUM; i++) {
-		size_t size = enemys_.size();
-		Enemy* enemy = new Enemy();
-		enemy->Init();
-		enemys_.push_back(enemy);
-		return enemy;
-	}
+	size_t size = enemys_.size();
+	std::shared_ptr<Enemy> enemy = std::make_shared<Enemy>();
+	enemy->Init();
+	enemys_.push_back(enemy);
+	return enemy;
 }
 
 void EnemyManager::CreateEnemy(void)
@@ -93,21 +92,21 @@ void EnemyManager::CreateEnemy(void)
 	//	//enemy_[1]->SetMoveDir(Enemy::MOVEDIR::DOWN);	//反時計回り
 	//}
 	
-	Enemy* enemy = nullptr;
+	std::shared_ptr<Enemy> enemy = nullptr;
 	for (int i = 0; i < ENEMY_NUM; i++) {
 		enemy = EnemyClass();
 		if (i == 0) {
-		enemys_[0]->SetPos({ 0.0f,100.0f,0.0f });		
-		enemys_[0]->SetMovePoint(100);					//正方形一辺の長さ
-		enemys_[0]->SetMoveSpeed(1.0f);					//移動スピード
+			enemys_[0]->SetPos({ -700.0f, 50.0f, 670.0f });
+		enemys_[0]->SetMovePoint(1400);					//正方形一辺の長さ
+		enemys_[0]->SetMoveSpeed(ENEMY1_MOVE_SPEED);		//移動スピード
 		enemys_[0]->SetMoveClockDir(Enemy::MOVECLOCKDIR::CLOCKWISE);
 		enemys_[0]->SetMoveDir(Enemy::MOVEDIR::RIGHT);	//時計回り
 		}
 
 		if (i == 1) {
-		enemys_[1]->SetPos({ 0.0f,100.0f,0.0f });
-		enemys_[1]->SetMovePoint(200);					//正方形一辺の長さ
-		enemys_[1]->SetMoveSpeed(1.0f);					//移動スピード
+		enemys_[1]->SetPos({ -280.0f,50.0f,268.0f });
+		enemys_[1]->SetMovePoint(1400 * 0.4f);			//正方形一辺の長さ
+		enemys_[1]->SetMoveSpeed(ENEMY2_MOVE_SPEED);	//移動スピード
 		enemys_[1]->SetMoveClockDir(Enemy::MOVECLOCKDIR::COUNTERCLOCKWISE);
 		enemys_[1]->SetMoveDir(Enemy::MOVEDIR::DOWN);	//反時計回り
 		}
@@ -123,7 +122,24 @@ void EnemyManager::EraseEnemy(void)
 	size_t size = enemys_.size();
 	for (int i = (int)size; i > 0; i--) {
 		enemys_[i - 1]->Release();
-		delete enemys_[i - 1];
 	}
 	enemys_.clear();
+}
+
+bool EnemyManager::CollisionStage(const int& _stageModelId)
+{
+	auto& col = Collision::GetInstance();
+
+	for (auto& enemy : enemys_)
+	{
+		if (col.IsHitUnitStageObject(_stageModelId, enemy->GetPos(), enemy->GetRadius()))
+		{
+			//当たったので移動前に戻る
+			//enemy->SetPos(enemy->GetPrePos());
+
+			return true;
+		}
+	}
+
+	return false;
 }

@@ -68,6 +68,11 @@ void Resource::Load(void)
 			&handleIds_[0]);
 		break;
 
+	case Resource::TYPE::MASK:
+		//マスク画像
+		handleId_ = LoadMask(path_.c_str());
+		break;
+
 	case Resource::TYPE::MODEL:
 		// モデル
 		handleId_ = MV1LoadModel(path_.c_str());
@@ -104,6 +109,10 @@ void Resource::Release(void)
 		}
 		delete[] handleIds_;
 	}
+		break;
+
+	case Resource::TYPE::MASK:
+		DeleteMask(handleId_);
 		break;
 
 	case Resource::TYPE::MODEL:

@@ -3,7 +3,7 @@
 class SceneBase
 {
 	//デバッグ用
-#define SCENE_DEBUG	
+//#define SCENE_DEBUG	
 
 public:
 

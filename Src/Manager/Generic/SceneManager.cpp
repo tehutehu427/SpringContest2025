@@ -78,8 +78,11 @@ void SceneManager::Init3D(void)
 	// ライトの設定
 	SetUseLighting(true);
 
+	// ライトの設定
+	SetLightEnable(true);
+
 	// 正面から斜め下に向かったライト
-	ChangeLightTypeDir({ 0.00f, -1.00f, 1.00f });
+	//ChangeLightTypeDir({ 0.00f, -1.00f, 1.00f });
 
 	// ライトの設定
 	//ChangeLightTypeDir({ 0.3f, -0.7f, 0.8f });

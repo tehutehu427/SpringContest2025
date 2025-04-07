@@ -32,12 +32,19 @@ void Camera::Init(void)
 	//カメラの初期設定
 	SetDefault();
 
+	//カメラのライト設定
+	SetLighting();
+
 	moveSpeed_ = 0.0f;
 
 }
 
 void Camera::Update(void)
 {
+	//ライトの移動
+	SetLightPositionHandle(spotLight_, pos_);
+	//ライトの向き更新
+	SetLightDirectionHandle(spotLight_, rot_.ToEuler());
 }
 
 void Camera::SetBeforeDraw(void)
@@ -235,6 +242,11 @@ void Camera::Draw(void)
 
 void Camera::Release(void)
 {
+	//ライト無効化
+	SetLightEnableHandle(spotLight_, false);
+
+	//ライトハンドル削除
+	DeleteLightHandle(spotLight_);
 }
 
 VECTOR Camera::GetPos(void) const
@@ -300,6 +312,21 @@ void Camera::SetDefault(void)
 
 	velocity_ = AsoUtility::VECTOR_ZERO;
 
+}
+
+void Camera::SetLighting(void)
+{
+	//ライトハンドル作成
+	spotLight_ = CreateSpotLightHandle(pos_, VGet(0.0f, -1.0f, 0.0f),
+		DX_PI_F / 2.0f,
+		DX_PI_F / 4.0f,
+		2000.0f,
+		0.0f,
+		0.002f,
+		0.0f);
+
+	//ライト有効化
+	SetLightEnableHandle(spotLight_, true);
 }
 
 void Camera::ProcessMove(void)

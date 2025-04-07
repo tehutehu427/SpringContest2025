@@ -19,6 +19,7 @@ void ItemManager::Init(void)
 	spawnPos_.emplace_back(SPAWN_POS_8);
 
 	cnt_ = 0.0f;
+	spawnNum_ = 0;
 
 	//アイテム生成
 	CreateItem();
@@ -27,7 +28,7 @@ void ItemManager::Init(void)
 void ItemManager::Update(void)
 {
 	//アイテムの消去(デバッグ)
-	DebugCountDelete();
+	//DebugCountDelete();
 
 	//アイテムの更新
 	item_->Update();
@@ -57,14 +58,21 @@ const std::shared_ptr<Item> ItemManager::GetItem(void)
 
 void ItemManager::CreateItem(void)
 {
+	//現在の出現番号を保存
+	int nowSpawnNum = spawnNum_;
+
 	//リセット
 	item_.reset();
 
-	//ランダム
-	int rand = GetRand(spawnPos_.size() - 1);
+	//現在の場所と被らないように
+	while (spawnNum_ == nowSpawnNum)
+	{
+		//ランダム
+		spawnNum_ = GetRand(spawnPos_.size() - 1);
+	}
 
 	//生成
-	item_ = std::make_shared<Item>(spawnPos_[rand]);
+	item_ = std::make_shared<Item>(spawnPos_[spawnNum_]);
 	item_->Init();
 }
 

@@ -35,9 +35,16 @@ void ResourceManager::InitTitle(void)
 	/*例*/
 
 	//タイトルロゴ
-	//res = Resource(Resource::TYPE::IMG, Application::PATH_IMAGE + "TitleLogo.png");
-	//resourcesMap_.emplace(SRC::TITLE_LOGO, res);
+	res = Resource(Resource::TYPE::IMG, Application::PATH_IMAGE + "TitleLogo.png");
+	resourcesMap_.emplace(SRC::TITLE_LOGO, res);
 
+	//タイトルBGM
+	res = Resource(Resource::TYPE::SOUND, Application::PATH_BGM + "Title.mp3");
+	resourcesMap_.emplace(SRC::BGM_TITLE, res);
+
+	//決定音
+	res = Resource(Resource::TYPE::SOUND, Application::PATH_SE + "StartPush.mp3");
+	resourcesMap_.emplace(SRC::SE_PUSH, res);
 }
 
 void ResourceManager::InitGame(void)
@@ -48,9 +55,17 @@ void ResourceManager::InitGame(void)
 
 	Resource res;
 
-	//ステージ
-	//res = Resource(Resource::TYPE::MODEL, Application::PATH_MODEL + "TitleLogo.png");
+	//スカイドーム
+	res = Resource(Resource::TYPE::MODEL, Application::PATH_MODEL + "Cave.mv1");
+	resourcesMap_.emplace(SRC::SKY_DOME, res);
+	
+	////ステージ
+	//res = Resource(Resource::TYPE::MODEL, Application::PATH_MODEL + "Stage.mv1");
 	//resourcesMap_.emplace(SRC::STAGE, res);
+
+	//宝石
+	res = Resource(Resource::TYPE::MODEL, Application::PATH_MODEL + "Gem.mv1");
+	resourcesMap_.emplace(SRC::GEM, res);
 
 	//ミニマップ関係
 	//--------------------------------------------
@@ -63,9 +78,36 @@ void ResourceManager::InitGame(void)
 	res = Resource(Resource::TYPE::IMG, Application::PATH_IMAGE + "MiniMap/MapGround.png");
 	resourcesMap_.emplace(SRC::MAP_GROUND, res);
 
+	//マスク処理用
+	res = Resource(Resource::TYPE::MASK, Application::PATH_IMAGE + "MiniMap/MapMask.png");
+	resourcesMap_.emplace(SRC::MAP_MASK, res);
+
+	//マップ画像
+	res = Resource(Resource::TYPE::IMG, Application::PATH_IMAGE + "MiniMap/MapImage.png");
+	resourcesMap_.emplace(SRC::MAP_IMAGE, res);
+
 	//ミニマップ用プレイヤー
 	res = Resource(Resource::TYPE::IMG, Application::PATH_IMAGE + "MiniMap/MapPlayer.png");
 	resourcesMap_.emplace(SRC::MAP_PLAYER, res);
+
+	//ミニマップ用敵
+	res = Resource(Resource::TYPE::IMG, Application::PATH_IMAGE + "MiniMap/MapEnemy.png");
+	resourcesMap_.emplace(SRC::MAP_ENEMY, res);
+
+	//サウンド
+	//----------------------------------------------
+
+	//タイトルBGM
+	res = Resource(Resource::TYPE::SOUND, Application::PATH_BGM + "GameScene.mp3");
+	resourcesMap_.emplace(SRC::BGM_GAME, res);
+
+	//ダメージ音
+	res = Resource(Resource::TYPE::SOUND, Application::PATH_SE + "Damage.mp3");
+	resourcesMap_.emplace(SRC::SE_DAMAGE, res);
+
+	//取得音
+	res = Resource(Resource::TYPE::SOUND, Application::PATH_SE + "Get.mp3");
+	resourcesMap_.emplace(SRC::SE_GET, res);
 
 	ResourcePlayer();
 	ResourceEnemy();
@@ -78,6 +120,18 @@ void ResourceManager::InitGameOver(void)
 	//*********************************************
 
 	Resource res;
+
+	//ゲームオーバー
+	res = Resource(Resource::TYPE::IMG, Application::PATH_IMAGE + "GameOverLogo.png");
+	resourcesMap_.emplace(SRC::GAMEOVER_LOGO, res);
+
+	//ゲームオーバーBGM
+	res = Resource(Resource::TYPE::SOUND, Application::PATH_BGM + "GameOver.mp3");
+	resourcesMap_.emplace(SRC::BGM_GAMEOVER, res);
+
+	//決定音
+	res = Resource(Resource::TYPE::SOUND, Application::PATH_SE + "StartPush.mp3");
+	resourcesMap_.emplace(SRC::SE_PUSH, res);
 }
 
 void ResourceManager::InitGameClear(void)
@@ -87,6 +141,18 @@ void ResourceManager::InitGameClear(void)
 	//*********************************************
 
 	Resource res;
+
+	//ゲームクリア
+	res = Resource(Resource::TYPE::IMG, Application::PATH_IMAGE + "GameClearLogo.png");
+	resourcesMap_.emplace(SRC::GAMECLEAR_LOGO, res);
+
+	//ゲームオーバーBGM
+	res = Resource(Resource::TYPE::SOUND, Application::PATH_BGM + "GameClear.mp3");
+	resourcesMap_.emplace(SRC::BGM_GAMECLEAR, res);
+
+	//決定音
+	res = Resource(Resource::TYPE::SOUND, Application::PATH_SE + "StartPush.mp3");
+	resourcesMap_.emplace(SRC::SE_PUSH, res);
 }
 
 //プレイヤー
@@ -109,6 +175,10 @@ void ResourceManager::ResourceEnemy(void)
 	//*********************************************
 
 	Resource res;
+
+	//敵
+	res = Resource(Resource::TYPE::MODEL, Application::PATH_MODEL + "Zombie.mv1");
+	resourcesMap_.emplace(SRC::ENEMY, res);
 }
 
 void ResourceManager::Release(void)

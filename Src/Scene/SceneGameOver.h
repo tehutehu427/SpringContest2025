@@ -1,5 +1,9 @@
 #pragma once
+
+#include<memory>
 #include "SceneBase.h"
+
+class titleUi;
 
 class SceneGameOver : public SceneBase
 {
@@ -21,6 +25,12 @@ public:
     void Release(void)override;
 
 private:
+
+    //ゲームオーバーロゴ
+    int logo_;
+
+    //タイトルUI
+    std::unique_ptr<titleUi> ui_;
 
     //描画(デバッグ)
     void DrawDebug(void);

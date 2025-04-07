@@ -16,13 +16,34 @@ public:
 		//************************************************************
 		
 		/*例*/
-		//TITLE_LOGO,				//タイトルロゴ
-		STAGE,
+		TITLE_LOGO,				//タイトルロゴ
+		GAMEOVER_LOGO,			//ゲームオーバー
+		GAMECLEAR_LOGO,			//ゲームクリア
+
+		SKY_DOME,				//スカイドーム
+		STAGE,					//ステージモデル
+		GEM,					//宝石モデル
+
+		//敵関係
+		ENEMY,					//敵モデル
 
 		//ミニマップ関係
-		MAP_FRAME,
-		MAP_GROUND,
-		MAP_PLAYER,
+		MAP_FRAME,				//ミニマップ枠
+		MAP_GROUND,				//ミニマップ枠内
+		MAP_MASK,				//ミニマップマスク用
+		MAP_IMAGE,				//ミニマップ画像
+		MAP_PLAYER,				//ミニマップ用プレイヤー
+		MAP_ENEMY,				//ミニマップ用敵
+
+		//サウンド
+		BGM_TITLE,				//タイトルBGM
+		BGM_GAME,				//ゲームBGM
+		BGM_GAMEOVER,			//ゲームオーバーBGM
+		BGM_GAMECLEAR,			//ゲームクリアBGM
+
+		SE_PUSH,				//決定音
+		SE_DAMAGE,				//ダメージ音
+		SE_GET,					//取得音
 	};
 
 	// 明示的にインステンスを生成する

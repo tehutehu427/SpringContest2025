@@ -92,18 +92,7 @@ public:
 	//追従対象の設定
 	const void SetFollow(const Transform* follow);
 
-	/// <summary>
-	/// 座標の設定
-	/// </summary>
-	/// <param name="pos">設定する座標</param>
-	/// <param name="target">設定する注視点</param>
 	void SetPos(const VECTOR& pos,const VECTOR& target);
-
-	/// <summary>
-	/// 回転の設定
-	/// </summary>
-	/// <param name="_rot">設定する回転</param>
-	void SetRot(const Quaternion& _rot) { rot_ = _rot; }
 
 private:
 
@@ -144,9 +133,15 @@ private:
 	VECTOR defaultPos_;
 
 	VECTOR shakeDir_;
-	
+
+	//ライト
+	int spotLight_;
+
 	//カメラを初期位置に戻す
 	void SetDefault(void);
+
+	//ライト設定
+	void SetLighting(void);
 
 	//カメラの描画モード関連------------------
 	void SetBeforeDrawFixedPoint(void);			//定点カメラ

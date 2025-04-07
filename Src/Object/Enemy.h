@@ -6,10 +6,13 @@
 class Enemy : public UnitBase
 {
 public:
-	static constexpr float ENEMY_SIZE = 50.0f;	//敵の大きさ(半径)
+	static constexpr float ENEMY_SIZE = 120.0f;		//敵の大きさ(半径)
 
 	static constexpr float STAGE_SIZE = 1700.0f;	//ステージの大きさ(正方形1辺の長さ)
 
+	static constexpr float ANIM_SPEED = 60.0f;		//アニメーション速度
+
+	static constexpr float ATK_CNT = 2.0f;			//再攻撃時間
 
 	static constexpr int MOVE_POINT = 4;		//敵の移動ポイント
 
@@ -56,6 +59,13 @@ public:
 	MOVEDIR SetMoveDir(const MOVEDIR& moveDir);
 
 	void SetDebugDrawPos(const int& pos);
+
+	//攻撃済みか
+	const bool IsAtk(void)const { return atkCnt_ < ATK_CNT; }
+
+	//攻撃した
+	void Hit(void) { atkCnt_ = 0.0f; }
+
 private:
 
 	void EnemyMove(void);
@@ -79,9 +89,8 @@ private:
 	/// <returns>距離</returns>
 	const float CalcDistance(const VECTOR _start, const VECTOR _goal)const;
 
-
-	//移動スピード
-	float moveSpeed_;
+	//アニメーション
+	void InitAnimation(void)override;
 
 	//移動方向
 	MOVEDIR moveDir_;
@@ -99,5 +108,8 @@ private:
 	VECTOR goalPos_;
 
 	int DebugDrawPos;
+
+	//再攻撃時間
+	float atkCnt_;
 
 };

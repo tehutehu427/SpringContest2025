@@ -10,6 +10,7 @@ Application* Application::instance_ = nullptr;
 //ファイル指定パス
 const std::string Application::PATH_IMAGE = "Data/Image/";
 const std::string Application::PATH_MODEL = "Data/Model/";
+const std::string Application::PATH_ANIM = "Data/Anim/";
 const std::string Application::PATH_EFFECT = "Data/Effect/";
 const std::string Application::PATH_TEXT = "Data/Text/";
 const std::string Application::PATH_FONT = "Data/Font/";
@@ -34,7 +35,7 @@ Application& Application::GetInstance(void)
 void Application::Init(void)
 {
 	// アプリケーションの初期設定
-	SetWindowText("Main");
+	SetWindowText("ジュエルランナー");
 	// ウィンドウサイズ
 	SetGraphMode(SCREEN_SIZE_X, SCREEN_SIZE_Y, 32);
 	ChangeWindowMode(true);

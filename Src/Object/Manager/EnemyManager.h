@@ -24,6 +24,9 @@ public:
 
 	static constexpr int ENEMY_NUM =2;
 
+	static constexpr float ENEMY1_MOVE_SPEED = 5.0f;		//移動速度
+	static constexpr float ENEMY2_MOVE_SPEED = 5.0f;		//移動速度
+
 	//***********************************************
 	//メンバ関数
 	//***********************************************
@@ -42,9 +45,19 @@ public:
 	void Draw(void);
 	//解放
 	void Release(void);
-	
+
 	//敵の取得
-	Enemy* EnemyClass(void);
+	std::vector<std::shared_ptr<Enemy>> GetEnemys(void) { return enemys_; }
+	
+	//敵の生成
+	std::shared_ptr<Enemy> EnemyClass(void);
+
+	/// <summary>
+	/// ステージとの衝突判定
+	/// </summary>
+	/// <param name="stageModelId">ステージのモデルID</param>
+	/// <returns>当たったかどうか(true:当たった)</returns>
+	bool CollisionStage(const int& _stageModelId);
 
 private:
 	//***********************************************
@@ -53,7 +66,7 @@ private:
 
 	//敵クラスのインスタンス
 	//Enemy* enemy_[ENEMY_NUM];
-	std::vector<Enemy*>enemys_;
+	std::vector<std::shared_ptr<Enemy>>enemys_;
 
 	//移動位置
 	std::vector<VECTOR>movePos_;

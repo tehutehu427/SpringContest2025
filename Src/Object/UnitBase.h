@@ -1,7 +1,9 @@
 #pragma once
 
 #include<unordered_map>
+#include<memory>
 #include"Common/Transform.h"
+#include"Common/AnimationController.h"
 
 class UnitBase
 {
@@ -13,8 +15,8 @@ public:
 
 	//アニメーション
 	enum class ANIM
-	{
-		NONE,	
+	{	
+		NONE,
 		IDLE,	//待機
 		WALK,	//歩き
 	};
@@ -40,18 +42,26 @@ public:
 	//モデル情報
 	const Transform& GetTransform(void) { return trans_; }
 
+	//ゲッター
+	//----------------------
+
 	//位置
-	const VECTOR GetPos(void)const { return trans_.pos; };
+	const VECTOR& GetPos(void)const { return trans_.pos; }
 	//角度
-	const VECTOR GetRot(void)const { return trans_.rot; };
+	const VECTOR& GetRot(void)const { return trans_.rot; }
 	//大きさ
-	const VECTOR GetScl(void)const { return trans_.scl; };
+	const VECTOR& GetScl(void)const { return trans_.scl; }
+	//前座標
+	const VECTOR& GetPrePos(void)const { return prePos_; }
 
 	//半径
 	const float GetRadius(void)const { return radius_; }
 
-	//アニメーションリセット
-	void ResetAnim(const ANIM _anim, const float _speed);
+	//セッター
+	//----------------------
+
+	//位置
+	void SetPos(const VECTOR& _pos) { trans_.pos = _pos; }
 
 	/// <summary>
 	/// 回転処理
@@ -69,28 +79,26 @@ protected:
 	//モデルの情報
 	Transform trans_;
 
+	//前座標
+	VECTOR prePos_;
+
 	//半径
 	float radius_;
 
 	//速度
 	float speed_;
 
-	//アニメーション
-	ANIM anim_;								//アニメステート
-	std::unordered_map<ANIM, int> animNum_;	//アニメーションナンバー格納配列。
-	int atcAnim_;							//アタッチするアニメを格納
-	int animTotalTime_;						//アニメーションの総再生時間
-	float stepAnim_;						//アニメーションの再生時間
-	float speedAnim_;						//アニメーション速度
+	//移動量
+	VECTOR movePow_;
 
+	//アニメーション関係
+	std::unique_ptr<AnimationController> anim_;		//アニメーション制御
 
 	//***********************************************
 	//メンバ関数
 	//***********************************************
 
-	//アニメーション関数
-	void Anim(void);
-	//アニメーション終了時の動き
-	virtual void FinishAnim(void);
+	//アニメーションリセット
+	virtual void InitAnimation(void);
 };
 

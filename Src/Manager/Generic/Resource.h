@@ -13,7 +13,9 @@ public:
 		NONE,
 		IMG,
 		IMGS,
+		MASK,
 		MODEL,
+		ANIM,
 		EFFEKSEER,
 		SOUND
 	};

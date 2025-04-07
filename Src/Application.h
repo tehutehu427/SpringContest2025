@@ -31,6 +31,7 @@ public:
 	//-------------------------------------------
 	static const std::string PATH_IMAGE;
 	static const std::string PATH_MODEL;
+	static const std::string PATH_ANIM;
 	static const std::string PATH_EFFECT;
 	static const std::string PATH_TEXT;
 	static const std::string PATH_FONT;

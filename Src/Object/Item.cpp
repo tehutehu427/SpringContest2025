@@ -1,4 +1,6 @@
 #include<DxLib.h>
+#include"../Manager/Generic/Resource.h"
+#include"../Manager/Generic/ResourceManager.h"
 #include"../Utility/AsoUtility.h"
 #include "Item.h"
 
@@ -6,16 +8,21 @@ Item::Item(VECTOR& _pos)
 {
 	trans_ = Transform();
 	trans_.pos = _pos;
+	trans_.localPos = VAdd(trans_.pos, MODEL_POS);
 	radius_ = 0.0f;
 	speed_ = 0.0f;
 }
 
 void Item::Init(void)
 {
+	auto& res = ResourceManager::GetInstance();
+
 	//変数の初期化
-	//trans_.modelId = 
+	trans_.SetModel(res.LoadModelDuplicate(
+		ResourceManager::SRC::GEM));
 	trans_.quaRot = Quaternion();
 	trans_.quaRotLocal = Quaternion::AngleAxis(AsoUtility::Deg2RadF(180.0f), AsoUtility::AXIS_Y);
+	trans_.scl = SCALE;
 	radius_ = RADIUS;
 	speed_ = 0.0f;
 
@@ -34,13 +41,12 @@ void Item::Draw(void)
 #ifdef DEBUG_ITEM
 	
 	//デバッグ
-	DrawDebug();
+	//DrawDebug();
 
 #endif // DEBUG_ITEM
 
-
 	//モデル描画
-	//MV1DrawModel(trans_.modelId);
+	MV1DrawModel(trans_.modelId);
 }
 
 void Item::DrawDebug(void)

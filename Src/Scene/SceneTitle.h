@@ -26,6 +26,9 @@ public:
 
 private:
 
+    //タイトルロゴ
+    int logo_;
+
     //グリッド線
     Grid* grid_;
 
